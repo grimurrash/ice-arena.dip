@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link href="/t3-assets/css/css-36da8-27468.css" rel="stylesheet" type="text/css" media="all"/>
         <title>Laravel</title>
 
         <!-- Fonts -->
