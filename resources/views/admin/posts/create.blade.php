@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{asset('posts')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if($message)
                             <div class="alert alert-danger" role="alert">
@@ -14,15 +14,15 @@
                             </div>
                             @endif
                             <div class="form-group">
-                                <label for="title">Введите заголовок поста</label>
+                                <label for="title">Введите заголовок новости</label>
                                 <input id="title" required type="text" class="form-control"
-                                       placeholder="Заголовок поста"
+                                       placeholder="Заголовок новости"
                                        name="title">
                             </div>
                             <div class="form-group">
-                                <label for="сategor_id">Выберите категорию поста</label>
-                                <select required id="сategor_id" class="form-control" name="сategor_id">
-                                    @forelse($cats as $cat)
+                                <label for="category_id">Выберите категорию новости</label>
+                                <select required id="category_id" class="form-control" name="category_id">
+                                    @forelse($categories as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
                                     @empty
                                         <option value="1">test</option>
@@ -32,18 +32,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="anons">Загрузите изобращение поста</label>
+                                <label for="anons">Загрузите изобращение новости</label>
                                 <input required type="file" class="form-control-file" name="image"
-                                       placeholder="Укажите путьь к изобращению">
+                                       placeholder="Укажите путь к изобращению">
                             </div>
 
                             <div class="form-group">
-                                <label for="anons">Введите краткую информацию о вашем посте</label>
-                                <textarea required id="anons" class="form-control" name="anons"></textarea>
+                                <label for="anons">Введите краткую информацию о вашей новости</label>
+                                <textarea required id="anons" maxlength="150" class="form-control" name="anons"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="text">Введите текст поста</label>
+                                <label for="text">Введите текст новости</label>
                                 <textarea required id="text" class="form-control" name="text"></textarea>
                             </div>
 

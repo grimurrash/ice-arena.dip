@@ -8,24 +8,24 @@
                     <div class="card-header bg-light text-center">
                         <h2 class="card-title">{{$post->title}}</h2>
                         @auth
-                            @if($post->user_id ==Auth::user()->id)
-                                <a href="{{ asset("posts/$post->id/edit") }}"
+                            @if(Auth::user()->permission === 'admin')
+                                <a href="{{ asset("posts/$post->link/edit") }}"
                                    class="btn btn-primary btn-lg btn-block">
                                     <i class="fas fa-edit"></i> Редактировать
                                 </a>
-                                <a href="{{ asset("posts/$post->id/delete") }}" class="btn btn-danger btn-lg btn-block">
+                                <a href="{{ asset("posts/$post->link/delete") }}" class="btn btn-danger btn-lg btn-block">
                                     <i class="fas fa-trash-alt"></i> Удалить
                                 </a>
                             @endif
                         @endauth
                     </div>
                     <div style="width: 100%;display: flex;justify-content: center;">
-                        <a href="{{asset("posts/$post->id")}}"><img src="{{asset("public/images/$post->image")}}"
+                        <a href="{{asset("posts/$post->link")}}"><img src="{{ asset("public/images/upload/".$post->image->link)}}"
                                                                     class="card-img-top" alt="..."></a>
                     </div>
                     <div class="card-body ">
                         <div>
-                            <h4>Категория: {{ \App\Categor::find($post->сategor_id)->name }}</h4>
+                            <h4>Категория: {{ $post->category->name }}</h4>
                         </div>
                         <div>
                             <p>{{ $post->text }}</p>
@@ -37,10 +37,10 @@
                                 <div class="card bg-light mb-3">
                                     <div class="card-header row" style="margin: 0">
                                         <div class="col-sm-6 text-left ">
-                                            <h5 class="text-muted">{{ $post->user->name }}</h5>
+                                            <h5 class="text-muted">{{ $comment->user->name }}</h5>
                                         </div>
                                         <div class="col-sm-6 text-right">
-                                            <small class="text-muted">{{date('H:i d.m.Y',strtotime($post->created_at))}}</small>
+                                            <small class="text-muted">{{date('H:i d.m.Y',strtotime($comment->created_at))}}</small>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -54,7 +54,7 @@
                         <hr>
                         @auth
                             <div>
-                                <form action="{{asset("posts/{$post->id}/comments")}}" method="POST"
+                                <form action="{{asset("posts/{$post->link}/comments")}}" method="POST"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -70,10 +70,6 @@
                         <div class="col-sm-6">
                             <small class="text-muted">{{date('H:i d.m.Y',strtotime($post->created_at))}}</small>
                         </div>
-                        <div class="col-sm-6 text-right ">
-                            <small class="text-muted">{{ $post->user->name }}</small>
-                        </div>
-
                     </div>
                 </div>
             </div>

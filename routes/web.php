@@ -11,18 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
-Route::get('admin', function () {
-    return view('auth.login');
-});
-Route::get('admin', function () {
-    return view('home');
-});
 
 Route::get('uslugi', function () {
     return view('uslugi');
@@ -49,15 +44,27 @@ Route::get('uslugi/razmeshchenie-informatsii-reklamy', function () {
 })->name('razmeshchenie-informatsii-reklamy');
 
 
-
 Route::middleware('auth')->group(function () {
-    Route::get('/posts', 'PostController@create')->name('posts.create');
-    Route::post('/posts', 'PostController@store');
-    Route::get('/posts/{id}/edit', 'PostController@edit');
-    Route::post('/posts/{id}/update', 'PostController@update');
-    Route::get('/posts/{id}/delete', 'PostController@delete');
-    Route::post('/posts/{id}/comments', 'CommentController@store');
-    Route::post('/categors/store','CategorController@store');
-    Route::get('/categors','CategorController@index');
-    Route::get('/categors/create','CategorController@create');
+    Route::get('home', function () {
+        return view('home');
+    });
+
+    Route::get('/posts', 'PostController@index')->name('posts.index');
+    Route::get('/posts/create', 'PostController@create')->name('posts.create');
+    Route::post('/posts', 'PostController@store')->name('posts.store');
+    Route::get('/posts/{link}', 'PostController@show')->name('posts.show');
+    Route::get('/posts/{link}/edit', 'PostController@edit')->name('posts.edit');
+    Route::post('/posts/{link}/update', 'PostController@update')->name('posts.update');
+    Route::get('/posts/{link}/delete', 'PostController@delete')->name('posts.delete');
+    Route::post('/posts/{link}/comments', 'CommentController@store')->name('comment.store');
+    Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
+    Route::get('/categories', 'CategoryController@index');
+    Route::get('/categories/create', 'CategoryController@create')->name('categories.create');
+});
+Route::get('admin', function () {
+    if (Auth::check()) {
+        return view('home');
+    } else {
+        return view('auth.login');
+    }
 });

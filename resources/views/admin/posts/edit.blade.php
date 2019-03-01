@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{asset("posts/$post->id/update")}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ asset("posts/$post->link/update") }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if($message)
                                 <div class="alert alert-danger" role="alert">
@@ -22,9 +22,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="сategor_id">Выберите категорию поста</label>
-                                <select required id="сategor_id" class="form-control" name="сategor_id">
-                                    @forelse($cats as $cat)
+                                <label for="сategory_id">Выберите категорию поста</label>
+                                <select required id="сategory_id" class="form-control" name="сategory_id">
+                                    @forelse($categories as $cat)
                                         @if($cat->id == $post->categor_id)
                                             <option selected value="{{$cat->id}}">{{$cat->name}}</option>
                                         @else

@@ -10,7 +10,7 @@ class Post extends Model
     public function image(){
         Post::belongsTo(Image::class);
     }
-    public  function categor(){
+    public  function category(){
         Post::belongsTo(Categor::class);
     }
 }

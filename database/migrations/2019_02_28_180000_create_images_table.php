@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('link')->unique();
-            $table->string('size');
+            $table->integer('size')->default(0);
             $table->timestamps();
         });
     }
