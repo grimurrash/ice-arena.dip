@@ -22,11 +22,11 @@
                     <div class="card mb-3">
                         <div style="width: 100%;display: flex;justify-content: center;">
                             <a href="{{asset("posts/$post->link")}}"><img
-                                        src="{{ asset("public/upload/",$post->image->link)}}"
+                                        src="{{ asset("public/images/upload/".$post->image->link)}}"
                                         class="card-img-top" alt=" {{$post->image->name }}"></a>
                         </div>
                         <div class="card-body">
-                            <a href="{{asset("posts/$post->id")}}"><h4 class="card-title">{!! $post->title !!}</h4></a>
+                            <a href="{{asset("posts/$post->link")}}"><h4 class="card-title">{!! $post->title !!}</h4></a>
                             <h5>
                                 Категория: {!! str_replace($search, "<mark>{$search}</mark>", $post->category->name) !!}
                             </h5>

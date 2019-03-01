@@ -8,20 +8,20 @@
                     <div class="card-body">
                         <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($message)
-                                <div class="alert alert-danger" role="alert">
+                            @if($error)
+                                <div class="alert alert-danger w-100" role="alert">
                                     {{$message}}
                                 </div>
                             @endif
                             <div class="form-group">
-                                <label for="title">Введите название картинки</label>
+                                <label for="title">Название картинки</label>
                                 <input id="title" required type="text" class="form-control"
                                        placeholder="Введите название картинки"
-                                       name="title">
+                                       name="name">
                             </div>
 
                             <div class="form-group">
-                                <label for="anons">Загрузите изобращение</label>
+                                <label for="anons">Путь к изобращение</label>
                                 <input required type="file" class="form-control-file" name="image"
                                        placeholder="Укажите путь к изобращению">
                             </div>

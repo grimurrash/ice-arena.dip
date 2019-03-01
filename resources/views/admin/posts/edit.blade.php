@@ -8,9 +8,9 @@
                     <div class="card-body">
                         <form action="{{ asset("posts/$post->link/update") }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if($message)
+                            @if($error)
                                 <div class="alert alert-danger" role="alert">
-                                    {{$message}}
+                                    {{$error}}
                                 </div>
                             @endif
                             <div class="form-group">
@@ -22,8 +22,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="сategory_id">Выберите категорию поста</label>
-                                <select required id="сategory_id" class="form-control" name="сategory_id">
+                                <label for="category_id">Выберите категорию поста</label>
+                                <select required id="category_id" class="form-control" name="category_id">
                                     @forelse($categories as $cat)
                                         @if($cat->id == $post->categor_id)
                                             <option selected value="{{$cat->id}}">{{$cat->name}}</option>
@@ -38,20 +38,29 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="anons">Загрузите изобращение поста</label>
-                                <input required type="file" class="form-control-file" name="image"
-                                       placeholder="Укажите путьь к изобращению">
+                                <label for="image">Загрузите изобращение поста</label>
+                                <select id="image" required name="image"  class="form-control">
+                                    @forelse($images as $img)
+                                        @if($img->id == $post->image_id)
+                                            <option selected value="{{$img->id}}">{{$img->name}}</option>
+                                        @else
+                                            <option value="{{$img->id}}">{{$img->name}}</option>
+                                        @endif
+                                    @empty
+                                        <option value="1">test</option>
+                                    @endforelse
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="anons">Введите краткую информацию о вашем посте</label>
-                                <textarea required id="anons" class="form-control"
+                                <textarea required id="anons" style="height: 300px;" class="form-control"
                                           name="anons">{{$post->anons}}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="text">Введите текст поста</label>
-                                <textarea required id="text" class="form-control" name="text">{{$post->text}}</textarea>
+                                <textarea required id="text" class="form-control" style="height: 500px;" name="text">{{$post->text}}</textarea>
                             </div>
 
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Сохранить">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
 {
@@ -12,9 +13,10 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($message = '')
     {
-        //
+        $images = Image::all();
+        return view('admin.images.index', compact('images', 'message'));
     }
 
     /**
@@ -22,26 +24,44 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($error = "")
     {
-        //
+        return view('admin.images.create', compact('error'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('image');
+        $link = $this->translit($request->name) . '.' . $file->getClientOriginalExtension();
+        $valid = Validator::make([
+            'image' => $request->image,
+            'link' => $link
+        ], [
+            'link' => 'required|string|max:255|unique:images',
+            'image' => 'required|image'
+        ]);
+        if (!$valid->fails()) {
+            $file->move(public_path('images/upload'), $link);
+            Image::create([
+                'name' => $request->name,
+                'link' => $link
+            ]);
+            $this->index("Изобращение успешно добавлено!");
+        } else {
+            $this->create("Изобращение с таким названием уже сущетсвует");
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
     public function show(Image $image)
@@ -52,7 +72,7 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
     public function edit(Image $image)
@@ -63,8 +83,8 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Image $image)
@@ -75,11 +95,20 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image)
     {
         //
+    }
+
+    public function translit($s)
+    {
+        $s = (string)$s; // преобразуем в строковое значение
+        $s = trim($s); // убираем пробелы в начале и конце строки
+        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
+        $s = strtr($s, array('|' => '','/' => '','\\' => '',',' => '','?' => '','.' => '','0' => '','9' => '','8' => '','7' => '','6' => '','1' => '','2' => '','3' => '','4' => '','5' => '','а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => '', ' ' => '_', '@' => '', '!' => '', '#' => '', '$' => '', '%' => '', '^' => '', '&' => '', '*' => '', '(' => '', ')' => '', '-' => '', '+' => '', '=' => ''));
+        return $s; // возвращаем результат
     }
 }

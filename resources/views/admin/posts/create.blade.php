@@ -39,7 +39,7 @@
 
                             <div class="form-group">
                                 <label for="anons">Введите краткую информацию о вашей новости</label>
-                                <textarea required id="anons" maxlength="150" class="form-control" name="anons"></textarea>
+                                <textarea required id="anons" maxlength="500" class="form-control" name="anons"></textarea>
                             </div>
 
                             <div class="form-group">

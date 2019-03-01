@@ -17,10 +17,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($search = "")
     {
         $posts = Post::all();
-        $search = "";
         return view('admin.posts.posts', compact(['posts', 'search']));
     }
 
@@ -53,11 +52,23 @@ class PostController extends Controller
 
         if (!$valid->fails()) {
             $file = $request->file('image');
-            $image = Image::create([
-                'name' => $request->title,
-                'link' => $this->translit($request->title) . '.' . $file->getClientOriginalExtension(),
+            $link = $this->translit($request->title) . '.' . $file->getClientOriginalExtension();
+            $valid = Validator::make([
+                'image' => $request->image,
+                'link' => $link
+            ], [
+                'link' => 'required|string|max:255|unique:images',
+                'image' => 'required|image'
             ]);
-            $file->move(public_path('/images/upload'), $image->link);
+            if (!$valid->fails()) {
+                $file->move(public_path('images/upload'), $link);
+                $image = Image::create([
+                    'name' => $request->title,
+                    'link' => $link
+                ]);
+            } else {
+                $image = Image::where('link', $link)->first();
+            }
             $post = Post::create([
                 'title' => $request->title,
                 'link' => $this->translit($request->title),
@@ -66,7 +77,8 @@ class PostController extends Controller
                 'image_id' => $image->id,
                 'category_id' => $request->category_id,
             ]);
-            return view('admin.posts.index', compact('post'));
+            $message = "Пост категории успешно создан!";
+            return view('admin.posts.index', compact('post', 'message'));
         } else {
             $categories = Category::all();
             $message = $valid->messages();
@@ -80,10 +92,10 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($link)
+    public function show($link, $message = "")
     {
         $post = Post::where('link', $link)->first();
-        return view('admin.posts.index', compact('post'));
+        return view('admin.posts.index', compact('post', 'message'));
     }
 
     /**
@@ -95,9 +107,10 @@ class PostController extends Controller
     public function edit($link)
     {
         $post = Post::where('link', $link)->first();
-        $message = '';
+        $error = '';
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'message', 'categories'));
+        $images = Image::all();
+        return view('admin.posts.edit', compact('post', 'error', 'images', 'categories'));
     }
 
     /**
@@ -114,36 +127,24 @@ class PostController extends Controller
             'title' => 'required|string|max:255|unique:posts,title,' . $post->id,
             'anons' => 'required|string',
             'text' => 'required|string',
-            'image' => 'required|image',
-            'category_id' => $request->category_id,
+            'category_id' => 'required|string',
         ]);
         if (!$valid->fails()) {
-            $file = $request->file('image');
-            $valid = Validator::make([
-                'link'=>$this->translit($request->title) . '.' . $file->getClientOriginalExtension()
-            ],[
-                'link' => 'required|string|max:255|unique:images,link,' . $post->image->id,
-            ]);
-            if (!$valid->fails()){
-                $post->image->update([
-                    'name' => $request->title,
-                    'link' => $this->translit($request->title) . '.' . $file->getClientOriginalExtension(),
-                ]);
-            }
-            $file->move(public_path('/images/upload'),  $post->image->link);
             $post->update([
                 'title' => $request->title,
                 'link' => $this->translit($request->title),
                 'anons' => $request->anons,
                 'text' => $request->text,
-                'image_id' => $post->image->id,
+                'image_id' => $request->image,
                 'category_id' => $request->category_id,
             ]);
-            return view('admin.posts.index', compact('post'));
+            $message = "Пост успешно отредактирован!";
+            return view('admin.posts.index', compact('post', 'message'));
         } else {
-            $message = '';
+            $error = $valid->messages();
             $categories = Category::all();
-            return view('admin.posts.edit', compact('post', 'message', 'categories'));
+            $images = Image::all();
+            return view('admin.posts.edit', compact('post', 'error', 'images', 'categories'));
         }
     }
 
@@ -162,32 +163,35 @@ class PostController extends Controller
     {
         Post::where('link', $link)->first()->delete();
         $posts = Post::all();
-        return view('home', compact('posts'));
+        return view('admin.home', compact('posts'));
     }
 
-//    public function search(Request $request)
-//    {
-//        $search = $request->search;
-//        $cat = Category::where('name', 'LIKE', "%$search%")->first();
-//        if (!$cat) {
-//            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->get();
-//        } else {
-//            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->orWhere('category_id', $cat->id)->get();
-//        }
-//        foreach ($posts as $post) {
-//            $post->title = str_replace($search, "<mark>{$search}</mark>", $post->title);
-//            $post->text = str_replace($search, "<mark>{$search}</mark>", $post->text);
-//            $post->anons = str_replace($search, "<mark>{$search}</mark>", $post->anons);
-//        }
-//        return view('home', compact(['posts','search']));
-//    }
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $cat = Category::where('name', 'LIKE', "%$search%")->first();
+        if (!$cat) {
+            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->get();
+        } else {
+            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->orWhere('category_id', $cat->id)->get();
+        }
+        foreach ($posts as $post) {
+            $post->title = str_replace($search, "<mark>{$search}</mark>", $post->title);
+            $post->text = str_replace($search, "<mark>{$search}</mark>", $post->text);
+            $post->anons = str_replace($search, "<mark>{$search}</mark>", $post->anons);
+        }
+        return view('admin.posts.posts', compact(['posts', 'search']));
+    }
 
     public function translit($s)
     {
         $s = (string)$s; // преобразуем в строковое значение
         $s = trim($s); // убираем пробелы в начале и конце строки
         $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
-        $s = strtr($s, array('а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
+        $s = preg_replace('/[^\p{L}0-9 ]/iu', '', $s);
+//        $s = preg_replace('/\d/', '', $s); // удаляет все спецсимволы
+        $s = trim($s); // убираем пробелы в начале и конце строки
+        $s = strtr($s, array(' ' => '-', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
         return $s; // возвращаем результат
     }
 }

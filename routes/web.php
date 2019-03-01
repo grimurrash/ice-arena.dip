@@ -11,18 +11,21 @@
 |
 */
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Controller@index');
 
-Auth::routes();
+Route::get('posts', 'Controller@posts');
+Route::get('posts/{link}', 'Controller@posts_index');
+Route::get('reviews', 'Controller@comments')->name('reviews');
+Route::post('/posts/{link}/comments', 'CommentController@store');
+
+
 
 Route::get('uslugi', function () {
     return view('uslugi');
 })->name('uslugi');
-
 Route::get('uslugi/massovoe-katanie', function () {
     return view('uslugi.massovoe-katanie');
 })->name('massovoe-katanie');
@@ -43,28 +46,31 @@ Route::get('uslugi/razmeshchenie-informatsii-reklamy', function () {
     return view('uslugi.razmeshchenie-informatsii-reklamy');
 })->name('razmeshchenie-informatsii-reklamy');
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('home', function () {
-        return view('home');
-    });
-
-    Route::get('/posts', 'PostController@index')->name('posts.index');
-    Route::get('/posts/create', 'PostController@create')->name('posts.create');
-    Route::post('/posts', 'PostController@store')->name('posts.store');
-    Route::get('/posts/{link}', 'PostController@show')->name('posts.show');
-    Route::get('/posts/{link}/edit', 'PostController@edit')->name('posts.edit');
-    Route::post('/posts/{link}/update', 'PostController@update')->name('posts.update');
-    Route::get('/posts/{link}/delete', 'PostController@delete')->name('posts.delete');
-    Route::post('/posts/{link}/comments', 'CommentController@store')->name('comment.store');
-    Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
-    Route::get('/categories', 'CategoryController@index');
-    Route::get('/categories/create', 'CategoryController@create')->name('categories.create');
-});
-Route::get('admin', function () {
+Route::get('admin', function ($message = '') {
     if (Auth::check()) {
-        return view('home');
+        return view('admin.home', compact(['message']));
     } else {
         return view('auth.login');
     }
+})->name('admin');
+Auth::routes();
+Route::middleware('auth')->group(function () {
+    Route::get('home',function ($message = ''){
+        return view('admin.home',compact(['message']));
+    })->name('admin.home');
+    Route::get('admin/images', 'ImageController@index')->name('images.index');
+    Route::get('admin/images/create', 'ImageController@create')->name('images.create');
+    Route::post('admin/images/create', 'ImageController@store')->name('images.store');
+    Route::get('admin/posts', 'PostController@index')->name('posts.index');
+    Route::get('admin/posts/create', 'PostController@create')->name('posts.create');
+    Route::post('admin/posts', 'PostController@store')->name('posts.store');
+    Route::get('admin/posts/{link}', 'PostController@show')->name('posts.show');
+    Route::get('admin/posts/{link}/edit', 'PostController@edit')->name('posts.edit');
+    Route::post('admin/posts/{link}/update', 'PostController@update')->name('posts.update');
+    Route::get('admin/posts/{link}/delete', 'PostController@delete')->name('posts.delete');
+    Route::post('admin/categories/store', 'CategoryController@store')->name('categories.store');
+    Route::get('admin/categories', 'CategoryController@index')->name('categories.index');
+    Route::get('admin/categories/create', 'CategoryController@create')->name('categories.create');
 });
+
+

@@ -60,53 +60,53 @@
                                         <span class="item-text">Реклама</span>
                                     </a>
                                 </li>
-                                <li class="item-115 li- rasp-btn hidden-child deeper parent"><a href="/raspisaniya">
-                                        <span class="fa fa-calendar" aria-hidden="true"></span>
-                                        <span class="item-text">Расписания</span>
-                                    </a>
-                                    <ul class="nav-child unstyled small">
-                                        <li class="item-274 li- deeper parent"><a
-                                                    href="/raspisaniya/grafik-zagruzki-ledovoj-areny">
-                                                <span class="" aria-hidden="true"></span>
-                                                <span class="item-text">График загрузки ледовой арены</span>
-                                            </a>
-                                            <ul class="nav-child unstyled small">
-                                                <li class="item-277 li-"><a
-                                                            href="/raspisaniya/grafik-zagruzki-ledovoj-areny">
-                                                        <span aria-hidden="true"></span>
-                                                        <span class="item-text">Расписание на текущую неделю</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item-278 li-"><a
-                                                            href="/raspisaniya/grafik-zagruzki-ledovoj-areny/grafik-zagruzki-ledovoj-areny-2">
-                                                        <span class="" aria-hidden="true"></span>
-                                                        <span class="item-text">Расписание на следующую неделю</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="item-275 li- deeper parent"><a
-                                                    href="/raspisaniya/grafik-zagruzki-klassa-khoreografii">
-                                                <span class="" aria-hidden="true"></span>
-                                                <span class="item-text">График загрузки класса хореографии</span>
-                                            </a>
-                                            <ul class="nav-child unstyled small">
-                                                <li class="item-280 li-"><a
-                                                            href="/raspisaniya/grafik-zagruzki-klassa-khoreografii">
-                                                        <span aria-hidden="true"></span>
-                                                        <span class="item-text">Расписание на текущую неделю</span>
-                                                    </a>
-                                                </li>
-                                                <li class="item-279 li-"><a
-                                                            href="/raspisaniya/grafik-zagruzki-klassa-khoreografii/grafik-zagruzki-klassa-khoreografii-2">
-                                                        <span class="" aria-hidden="true"></span>
-                                                        <span class="item-text">Расписание на следующую неделю</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                {{--<li class="item-115 li- rasp-btn hidden-child deeper parent"><a href="/raspisaniya">--}}
+                                        {{--<span class="fa fa-calendar" aria-hidden="true"></span>--}}
+                                        {{--<span class="item-text">Расписания</span>--}}
+                                    {{--</a>--}}
+                                    {{--<ul class="nav-child unstyled small">--}}
+                                        {{--<li class="item-274 li- deeper parent"><a--}}
+                                                    {{--href="/raspisaniya/grafik-zagruzki-ledovoj-areny">--}}
+                                                {{--<span class="" aria-hidden="true"></span>--}}
+                                                {{--<span class="item-text">График загрузки ледовой арены</span>--}}
+                                            {{--</a>--}}
+                                            {{--<ul class="nav-child unstyled small">--}}
+                                                {{--<li class="item-277 li-"><a--}}
+                                                            {{--href="/raspisaniya/grafik-zagruzki-ledovoj-areny">--}}
+                                                        {{--<span aria-hidden="true"></span>--}}
+                                                        {{--<span class="item-text">Расписание на текущую неделю</span>--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                                {{--<li class="item-278 li-"><a--}}
+                                                            {{--href="/raspisaniya/grafik-zagruzki-ledovoj-areny/grafik-zagruzki-ledovoj-areny-2">--}}
+                                                        {{--<span class="" aria-hidden="true"></span>--}}
+                                                        {{--<span class="item-text">Расписание на следующую неделю</span>--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</li>--}}
+                                        {{--<li class="item-275 li- deeper parent"><a--}}
+                                                    {{--href="/raspisaniya/grafik-zagruzki-klassa-khoreografii">--}}
+                                                {{--<span class="" aria-hidden="true"></span>--}}
+                                                {{--<span class="item-text">График загрузки класса хореографии</span>--}}
+                                            {{--</a>--}}
+                                            {{--<ul class="nav-child unstyled small">--}}
+                                                {{--<li class="item-280 li-"><a--}}
+                                                            {{--href="/raspisaniya/grafik-zagruzki-klassa-khoreografii">--}}
+                                                        {{--<span aria-hidden="true"></span>--}}
+                                                        {{--<span class="item-text">Расписание на текущую неделю</span>--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                                {{--<li class="item-279 li-"><a--}}
+                                                            {{--href="/raspisaniya/grafik-zagruzki-klassa-khoreografii/grafik-zagruzki-klassa-khoreografii-2">--}}
+                                                        {{--<span class="" aria-hidden="true"></span>--}}
+                                                        {{--<span class="item-text">Расписание на следующую неделю</span>--}}
+                                                    {{--</a>--}}
+                                                {{--</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</li>--}}
+                                    {{--</ul>--}}
+                                {{--</li>--}}
                             </ul>
                         </div>
                     </div>
@@ -163,11 +163,11 @@
                                     <span class="item-text">Реклама</span>
                                 </a>
                             </li>
-                            <li class="item-115 li- rasp-btn hidden-child parent"><a href="/raspisaniya">
-                                    <span class="fa fa-calendar" aria-hidden="true"></span>
-                                    <span class="item-text">Расписания</span>
-                                </a>
-                            </li>
+                            {{--<li class="item-115 li- rasp-btn hidden-child parent"><a href="/raspisaniya">--}}
+                                    {{--<span class="fa fa-calendar" aria-hidden="true"></span>--}}
+                                    {{--<span class="item-text">Расписания</span>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                         </ul>
 
                     </div>
