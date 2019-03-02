@@ -125,7 +125,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class="tl-logo">
-                        <a title="Ледовая арена Вологда" href="/"><img src="/public/images/logo.png"
+                        <a title="Ледовая арена Арск" href="/"><img src="/public/images/logo.png"
                                                                        alt="Ледовая арена"></a>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
 
 
                         <div class="custom">
-                            <a title="Ледовая арена Вологда" href="/"><img class="img-responsive"
+                            <a title="Ледовая арена Арск" href="/"><img class="img-responsive"
                                                                            src="/public/images/logo.png"
                                                                            alt=""/></a></div>
 
@@ -211,7 +211,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 copyright ">
-                        <p class="center">Арча арена - © 2019</p>
+                        <p class="center">Арск арена - © 2019</p>
                     </div>
                 </div>
             </div>

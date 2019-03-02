@@ -3,9 +3,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description"
-          content="Массовые катания, тренажерный зал, аренда ледового поля, хоккей, хореографический класс в Вологде"/>
-    <meta name="generator" content="Joomla! - Open Source Content Management"/>
-    <title>Размещение информации (рекламы) - Ледовая арена города Вологды</title>
+          content="Массовые катания, тренажерный зал, аренда ледового поля, хоккей, хореографический класс в Арск"/>
+    <title>Размещение информации (рекламы) - Ледовая арена города Арск</title>
     <link href="/public/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link href="/public/css/css-36da8-27468.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/public/css/css-579db-00020.css" rel="stylesheet" type="text/css" media="all"/>
@@ -145,7 +144,7 @@
                                                  style="box-shadow: inset 0px 130px 100px -125px rgba(0,0,0,0.9);">
                                                 <div class="ba-modal-title"><h3 class="modal-title"
                                                                                 style="color:rgba(255, 255, 255, 1);">
-                                                    Размещение информации (рекламы) - Ледовая арена города Вологды</h3>
+                                                    Размещение информации (рекламы) - Ледовая арена города Арск</h3>
                                                 </div>
                                                 <div class="ba-center-icons"><i style="color:rgba(255, 255, 255, 1)"
                                                                                 class="ba-zoom-in zmdi zmdi-zoom-in"></i><i

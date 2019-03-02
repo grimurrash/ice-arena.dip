@@ -2,7 +2,7 @@
 @section('head')
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-        <title>А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &quot;Love Ice Party&quot; 14 февраля в 19.00? - Ледовая арена города Вологды</title>
+        <title>А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &quot;Love Ice Party&quot; 14 февраля в 19.00? - Ледовая арена города Арск</title>
         <link href="/public/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
         <link href="/public/css/css-36da8-27468.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="/public/css/css-579db-00020.css" rel="stylesheet" type="text/css" media="all"/>
