@@ -89,10 +89,10 @@
                                     <p>Катание осуществляется под хорошую музыку, в комфортных температурных
                                         условиях.</p>
                                     <p><strong>Приглашаем детей и взрослых!</strong></p>
-                                    <p>График массовых катаний смотрите в</p>
-                                    <p><a class="btn btn-default" href="/raspisaniya"> <span class="fa fa-calendar"
-                                                                                             aria-hidden="true"></span>
-                                        <span class="item-text">РАСПИСАНИИ</span> </a></p>
+                                    {{--<p>График массовых катаний смотрите в</p>--}}
+                                    {{--<p><a class="btn btn-default" href="/raspisaniya"> <span class="fa fa-calendar"--}}
+                                                                                             {{--aria-hidden="true"></span>--}}
+                                        {{--<span class="item-text">РАСПИСАНИИ</span> </a></p>--}}
                                     <p><b>Важно! Массовые катания осуществляются строго при наличии на ледовом поле</b>
                                     </p>
                                     <p><b> не менее 10 человек.</b></p>

@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ asset("posts/$post->link/update") }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ asset("admin/posts/$post->link/update") }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if($error)
                                 <div class="alert alert-danger" role="alert">

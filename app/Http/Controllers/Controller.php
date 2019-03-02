@@ -20,7 +20,8 @@ class Controller extends BaseController
     {
         $posts = Post::lastPost();
         $news_more = Post::newsMore(4);
-        return view('welcome', compact('posts', 'news_more'));
+        $comments = Comment::lastComments(3);
+        return view('welcome', compact('posts', 'news_more','comments'));
     }
 
     public function posts()
@@ -37,8 +38,24 @@ class Controller extends BaseController
         $categories = Category::all();
         return view('posts.index', compact(['post', 'news_more', 'categories']));
     }
+
     public function comments(){
         $comments = Comment::lastComments();
         return view('reviews',compact('comments'));
+    }
+
+    public function categories($link){
+        $category = Category::where('link',$link)->first();
+        $posts = $category->posts;
+        $news_more = Post::newsMore(6);
+        $categories = Category::all();
+        return view('posts', compact(['category','posts', 'news_more', 'categories']));
+    }
+    public function posts_default(){
+        $category = Category::first();
+        $posts = $category->posts;
+        $news_more = Post::newsMore(6);
+        $categories = Category::all();
+        return view('posts', compact(['category','posts', 'news_more', 'categories']));
     }
 }

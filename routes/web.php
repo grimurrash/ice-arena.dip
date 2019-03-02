@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'Controller@index');
 
-Route::get('posts', 'Controller@posts');
+Route::get('posts', 'Controller@posts_default');
 Route::get('posts/{link}', 'Controller@posts_index');
+Route::get('posts/categories/{link}','Controller@categories');
 Route::get('reviews', 'Controller@comments')->name('reviews');
 Route::post('/posts/{link}/comments', 'CommentController@store');
+Route::post('/posts/search', 'PostController@search')->name('posts.search');
+Route::get('post/default',function (){
+    return view('posts.default');
+})->name('posts.default');
 
 
 

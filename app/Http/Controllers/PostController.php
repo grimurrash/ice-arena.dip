@@ -129,6 +129,7 @@ class PostController extends Controller
             'text' => 'required|string',
             'category_id' => 'required|string',
         ]);
+
         if (!$valid->fails()) {
             $post->update([
                 'title' => $request->title,
@@ -138,6 +139,8 @@ class PostController extends Controller
                 'image_id' => $request->image,
                 'category_id' => $request->category_id,
             ]);
+
+
             $message = "Пост успешно отредактирован!";
             return view('admin.posts.index', compact('post', 'message'));
         } else {
@@ -169,11 +172,16 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $search = $request->search;
-        $cat = Category::where('name', 'LIKE', "%$search%")->first();
-        if (!$cat) {
+        $cat = Category::where('name', 'LIKE', "%$search%")->get();
+        if (!count($cat)) {
             $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->get();
         } else {
-            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->orWhere('category_id', $cat->id)->get();
+            $posts = [];
+            foreach ($cat as $category) {
+                foreach ($category->posts as $post) {
+                    $posts[] = $post;
+                }
+            }
         }
         foreach ($posts as $post) {
             $post->title = str_replace($search, "<mark>{$search}</mark>", $post->title);

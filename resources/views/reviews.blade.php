@@ -6,8 +6,9 @@
         <link href="/public/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
         <link href="/public/css/css-36da8-27468.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="/public/css/css-579db-00020.css" rel="stylesheet" type="text/css" media="all"/>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" rel="stylesheet" type="text/css"/>
+        <link href="/public/css/fonts.css" rel="stylesheet" type="text/css"/>
         <script src="/public/js/js-3444a-00020.js" type="text/javascript"></script>
+
         <script type="text/javascript">
             jQuery(window).on('load', function () {
                 new JCaption('img.caption');
@@ -80,70 +81,98 @@
                             <div id="jc">
                                 <div id="comments"><h4>Комментарии
                                     </h4>
-                                    <div class="comments-list" id="comments-list-0">
-                                        <div class="even" id="comment-item-7">
-                                            <div class="rbox">
-                                                <div class="comment-box">
-                                                    <div class="comment-header">
-                                                        <span class="comment-author">Анастасия</span>
-                                                    </div>
-                                                    <div class="comment-body" id="comment-body-7">Были на массовых
-                                                        катаниях в
-                                                        Ледовом дворце с детьми, причем младший ребенок не умеет
-                                                        кататься на
-                                                        коньках совсем. Приятно, что есть специальные приспособления для
-                                                        начинающих, не знаю как называются они, удобные и позволяют не
-                                                        падать))). Очень комфортно в здании, все продумано и отлично
-                                                        организовано Дети остались довольны катанием. <br/>Со
-                                                        своими
-                                                        коньками приходить можно и нужно! Экономия времени, не нужно
-                                                        стоять в
-                                                        очереди и можно заранее переодеться. Наличие шкафчиков и туалета
-                                                        прямо в
-                                                        помещении арены - супер удобно для посетителей с детьми. <br/>Спасибо
-                                                        администрации за отличный лед и возможность спортивно
-                                                        отдохнуть!!!
-                                                        <span class="comments-buttons">
-                                                        <span class="comment-date">10.02.2019 23:17</span>
+                                    @forelse($comments as $comment)
+                                        <div class="comments-list" id="comments-list-0">
+                                            <div class="even" id="comment-item-7">
+                                                <div class="rbox">
+                                                    <div class="comment-box">
+                                                        <div class="comment-header">
+                                                            <span class="comment-author">{{$comment->author}}</span>
+                                                        </div>
+                                                        <div class="comment-body" id="comment-body-7">{{$comment->comment}}
+                                                            <span class="comments-buttons">
+                                                        <span class="comment-date">{{date('d.m.Y H:i',strtotime($comment->created_at))}}</span>
                                                         </span>
+                                                        </div>
+                                                        <div class="clear"></div>
                                                     </div>
-                                                    <div class="clear"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="comments-list" id="comments-list-0">
-                                        <div class="even" id="comment-item-7">
-                                            <div class="rbox">
-                                                <div class="comment-box">
-                                                    <div class="comment-header">
-                                                        <span class="comment-author">Анастасия</span>
-                                                    </div>
-                                                    <div class="comment-body" id="comment-body-7">Были на массовых
-                                                        катаниях в
-                                                        Ледовом дворце с детьми, причем младший ребенок не умеет
-                                                        кататься на
-                                                        коньках совсем. Приятно, что есть специальные приспособления для
-                                                        начинающих, не знаю как называются они, удобные и позволяют не
-                                                        падать))). Очень комфортно в здании, все продумано и отлично
-                                                        организовано Дети остались довольны катанием. <br/>Со
-                                                        своими
-                                                        коньками приходить можно и нужно! Экономия времени, не нужно
-                                                        стоять в
-                                                        очереди и можно заранее переодеться. Наличие шкафчиков и туалета
-                                                        прямо в
-                                                        помещении арены - супер удобно для посетителей с детьми. <br/>Спасибо
-                                                        администрации за отличный лед и возможность спортивно
-                                                        отдохнуть!!!
-                                                        <span class="comments-buttons">
+                                    @empty
+                                        <div class="comments-list" id="comments-list-0">
+                                            <div class="even" id="comment-item-7">
+                                                <div class="rbox">
+                                                    <div class="comment-box">
+                                                        <div class="comment-header">
+                                                            <span class="comment-author">Анастасия</span>
+                                                        </div>
+                                                        <div class="comment-body" id="comment-body-7">Были на массовых
+                                                            катаниях в
+                                                            Ледовом дворце с детьми, причем младший ребенок не умеет
+                                                            кататься на
+                                                            коньках совсем. Приятно, что есть специальные приспособления
+                                                            для
+                                                            начинающих, не знаю как называются они, удобные и позволяют
+                                                            не
+                                                            падать))). Очень комфортно в здании, все продумано и отлично
+                                                            организовано Дети остались довольны катанием. <br/>Со
+                                                            своими
+                                                            коньками приходить можно и нужно! Экономия времени, не нужно
+                                                            стоять в
+                                                            очереди и можно заранее переодеться. Наличие шкафчиков и
+                                                            туалета
+                                                            прямо в
+                                                            помещении арены - супер удобно для посетителей с детьми.
+                                                            <br/>Спасибо
+                                                            администрации за отличный лед и возможность спортивно
+                                                            отдохнуть!!!
+                                                            <span class="comments-buttons">
                                                         <span class="comment-date">10.02.2019 23:17</span>
                                                         </span>
+                                                        </div>
+                                                        <div class="clear"></div>
                                                     </div>
-                                                    <div class="clear"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="comments-list" id="comments-list-0">
+                                            <div class="even" id="comment-item-7">
+                                                <div class="rbox">
+                                                    <div class="comment-box">
+                                                        <div class="comment-header">
+                                                            <span class="comment-author">Анастасия</span>
+                                                        </div>
+                                                        <div class="comment-body" id="comment-body-7">Были на массовых
+                                                            катаниях в
+                                                            Ледовом дворце с детьми, причем младший ребенок не умеет
+                                                            кататься на
+                                                            коньках совсем. Приятно, что есть специальные приспособления
+                                                            для
+                                                            начинающих, не знаю как называются они, удобные и позволяют
+                                                            не
+                                                            падать))). Очень комфортно в здании, все продумано и отлично
+                                                            организовано Дети остались довольны катанием. <br/>Со
+                                                            своими
+                                                            коньками приходить можно и нужно! Экономия времени, не нужно
+                                                            стоять в
+                                                            очереди и можно заранее переодеться. Наличие шкафчиков и
+                                                            туалета
+                                                            прямо в
+                                                            помещении арены - супер удобно для посетителей с детьми.
+                                                            <br/>Спасибо
+                                                            администрации за отличный лед и возможность спортивно
+                                                            отдохнуть!!!
+                                                            <span class="comments-buttons">
+                                                        <span class="comment-date">10.02.2019 23:17</span>
+                                                        </span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforelse
                                     <div id="comments-footer" align="center"></div>
                                 </div>
                             </div>

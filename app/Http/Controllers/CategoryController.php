@@ -37,15 +37,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
-        $valid = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', 'unique:users'],
+        $link = $this->translit($request->name);
+        $valid = Validator::make([
+            'name' => $request->name,
+            'link' => $link
+        ], [
+            'name' => ['required', 'string'],
+            'link' => ['required', 'string', 'max:255', 'unique:categories'],
         ]);
         if ($valid->fails()) {
             $this->create("Категория с таким названием уже существует.");
         } else {
             Category::create([
-                'name' => $request->name
+                'name' => $request->name,
+                'link' => $link
             ]);
             $categories = Category::all();
             return view('admin.categories.index', compact('categories'));
@@ -53,4 +58,15 @@ class CategoryController extends Controller
 
     }
 
+    public function translit($s)
+    {
+        $s = (string)$s; // преобразуем в строковое значение
+        $s = trim($s); // убираем пробелы в начале и конце строки
+        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
+        $s = preg_replace('/[^\p{L}0-9 ]/iu', '', $s);
+//        $s = preg_replace('/\d/', '', $s); // удаляет все спецсимволы
+        $s = trim($s); // убираем пробелы в начале и конце строки
+        $s = strtr($s, array(' ' => '-', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
+        return $s; // возвращаем результат
+    }
 }

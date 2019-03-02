@@ -39,12 +39,12 @@
 
                             <div class="form-group">
                                 <label for="anons">Введите краткую информацию о вашей новости</label>
-                                <textarea required id="anons" maxlength="500" class="form-control" name="anons"></textarea>
+                                <textarea required id="anons" style="height: 200px;" maxlength="500" class="form-control" name="anons"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="text">Введите текст новости</label>
-                                <textarea required id="text" class="form-control" name="text"></textarea>
+                                <textarea required id="text" style="height: 500px;" class="form-control" name="text"></textarea>
                             </div>
 
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Создать">

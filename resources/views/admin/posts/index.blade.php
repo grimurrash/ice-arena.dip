@@ -13,20 +13,20 @@
                     <div class="card-header bg-light text-center">
                         <h2 class="card-title">{!! $post->title !!}</h2>
                         @auth
-                            @if(Auth::user()->permission === 'admin')
+                            @if(Auth::user()->permission === 'user')
                                 <a href="{{ asset("posts/$post->link/edit") }}"
                                    class="btn btn-primary btn-lg btn-block">
-                                    <i class="fas fa-edit"></i> Редактировать
+                                     Редактировать
                                 </a>
                                 <a href="{{ asset("posts/$post->link/delete") }}" class="btn btn-danger btn-lg btn-block">
-                                    <i class="fas fa-trash-alt"></i> Удалить
+                                     Удалить
                                 </a>
                             @endif
                         @endauth
                     </div>
                     <div style="width: 100%;display: flex; justify-content: center;">
                        <img src="{{ asset("public/images/upload/".$post->image->link)}}"
-                                                                    class="card-img-top" alt="..." style="width: auto">
+                                                                    class="card-img-top" alt="..." style="width: auto; max-width: 100%">
                     </div>
                     <div class="card-body ">
                         <div>

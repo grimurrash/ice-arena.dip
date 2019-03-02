@@ -10,7 +10,6 @@
         <link href="/public/css/css-579db-00020.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="/public/css/fonts.css" rel="stylesheet" type="text/css"/>
         <script src="/public/js/js-3444a-00020.js" type="text/javascript"></script>
-
         <script type="text/javascript">
             jQuery(window).on('load', function () {
                 new JCaption('img.caption');
@@ -78,10 +77,6 @@
                                 </div>
                                 <div class="btns center"><a class="btn btn-default" href="/uslugi/massovoe-katanie"><i
                                                 class="fa fa-chevron-circle-right" aria-hidden="true"></i> Подробнее...</a>
-                                    <a
-                                            class="btn btn-primary" href="{{route('reviews')}}"><i class="fa fa-pencil-square-o"
-                                                                                      aria-hidden="true"></i> Написать
-                                        отзыв</a>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +98,12 @@
                                             @forelse($posts as $post)
                                                 <div class="news-item-cont col-md-12">
                                                     <div class="news-item">
-                                                        <div class="news-img" style="display: flex; align-items: center;">
+                                                        <div class="news-img"
+                                                             style="display: flex; align-items: center; height: 100%">
                                                             <a href="{{ asset('posts/'.$post->link) }}"
-                                                               title="{{$post->title}}"><img
+                                                               title="{{$post->title}}" style="width: 100%;"><img
                                                                         src="{{ asset("public/images/upload/".$post->image->link)}}"
-                                                                        alt="{{$post->title}}"/></a>
+                                                                        alt="{{$post->title}}" style="width: 100%;"/></a>
                                                         </div>
                                                         <div class="news-desc">
                                                             <h4 class="news-title">
@@ -140,14 +136,14 @@
                                                 <div class="news-item-cont col-md-12">
                                                     <div class="news-item">
                                                         <div class="news-img">
-                                                            <a href="/press-tsentr/a-ty-idesh-na-ledovuyu-vecherinku-love-ice-party-14-fevralya-v-19-00"
+                                                            <a href="{{route('posts.default')}}"
                                                                title="А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &amp;quot;Love Ice Party&amp;quot; 14 февраля в 19.00?"><img
                                                                         src="/public/images/290x250/diamond620525640-9a1dec96619451f303c293cff36dfde9.jpg"
                                                                         alt="А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &amp;quot;Love Ice Party&amp;quot; 14 февраля в 19.00?"/></a>
                                                         </div>
                                                         <div class="news-desc">
                                                             <h4 class="news-title">
-                                                                <a href="/press-tsentr/a-ty-idesh-na-ledovuyu-vecherinku-love-ice-party-14-fevralya-v-19-00">
+                                                                <a href="{{route('posts.default')}}">
                                                                     А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &quot;Love Ice Party&quot;
                                                                     14
                                                                     февраля в 19.00? </a>
@@ -197,32 +193,33 @@
                                             <h3>Смотрите также:</h3>
                                             <div class="junewsultra  news-more-mod">
                                                 @forelse($news_more as $news)
-                                                <div class="news-item-cont col-md-12">
-                                                    <div class="news-item">
-                                                        <div class="news-desc">
-                                                            <h4 class="news-title">
-                                                                <a href="{{ asset('posts/'.$post->link) }}">
-                                                                    {{$news->title}} </a>
-                                                            </h4>
-                                                            <div class="news-info">
-                                                                <dl class="article-info  muted">
-                                                                    <dd class="published hasTooltip" title=""
-                                                                        data-original-title="Опубликовано: ">
-                                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                                        <time datetime="{{date('d.m.Y',strtotime($post->created_at))}}"
-                                                                              itemprop="datePublished">
-                                                                            {{date('d.m.Y',strtotime($post->created_at))}}
-                                                                        </time>
-                                                                    </dd>
-                                                                </dl>
-                                                                <div class="jn-hit-n-rating">
+                                                    <div class="news-item-cont col-md-12">
+                                                        <div class="news-item">
+                                                            <div class="news-desc">
+                                                                <h4 class="news-title">
+                                                                    <a href="{{ asset('posts/'.$post->link) }}">
+                                                                        {{$news->title}} </a>
+                                                                </h4>
+                                                                <div class="news-info">
+                                                                    <dl class="article-info  muted">
+                                                                        <dd class="published hasTooltip" title=""
+                                                                            data-original-title="Опубликовано: ">
+                                                                            <i class="fa fa-clock-o"
+                                                                               aria-hidden="true"></i>
+                                                                            <time datetime="{{date('d.m.Y',strtotime($post->created_at))}}"
+                                                                                  itemprop="datePublished">
+                                                                                {{date('d.m.Y',strtotime($post->created_at))}}
+                                                                            </time>
+                                                                        </dd>
+                                                                    </dl>
+                                                                    <div class="jn-hit-n-rating">
+                                                                    </div>
                                                                 </div>
+
+
                                                             </div>
-
-
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @empty
                                                     <div class="news-item-cont col-md-12">
                                                         <div class="news-item">
@@ -239,7 +236,8 @@
                                                                     <dl class="article-info  muted">
                                                                         <dd class="published hasTooltip" title=""
                                                                             data-original-title="Опубликовано: ">
-                                                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                            <i class="fa fa-clock-o"
+                                                                               aria-hidden="true"></i>
                                                                             <time datetime="12.01.2019"
                                                                                   itemprop="datePublished">
                                                                                 12.01.2019
@@ -282,99 +280,108 @@
                                 </h3>
                                 <div class="comments-wrap">
                                     <div class="moduletable">
-
-
                                         <div class="jcomments-latest equal">
-
-
-                                            <div class="c-item-wrap col-md-4 col-xs-12">
-                                                <div class="c-item">
-                                                    <ul class="c-info list-inline">
-
-                                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
-                                                                    class="date">10.02.2019 23:17</span>
-                                                        </li>
-
-
-                                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span
-                                                                    class="author">Анастасия</span></li>
-                                                    </ul>
-
-                                                    <div class="comment rounded ">
-
-
-                                                        <div>
-                                                            Были на массовых катаниях в Ледовом дворце с детьми, причем
-                                                            младший
-                                                            ребенок не умеет кататься на ...
+                                            @forelse($comments as $comment)
+                                                <div class="c-item-wrap col-md-4 col-xs-12">
+                                                    <div class="c-item">
+                                                        <ul class="c-info list-inline">
+                                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
+                                                                        class="date">{{date('d.m.Y H:i',strtotime($comment->created_at))}}</span>
+                                                            </li>
+                                                            <li><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                                                <span
+                                                                        class="author">{{$comment->author}}</span></li>
+                                                        </ul>
+                                                        <div class="comment rounded ">
+                                                            <div>{{$comment->anons() }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @empty
+                                                <div class="c-item-wrap col-md-4 col-xs-12">
+                                                    <div class="c-item">
+                                                        <ul class="c-info list-inline">
+
+                                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
+                                                                        class="date">10.02.2019 23:17</span>
+                                                            </li>
 
 
-                                            <div class="c-item-wrap col-md-4 col-xs-12">
-                                                <div class="c-item">
-                                                    <ul class="c-info list-inline">
+                                                            <li><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                                                <span
+                                                                        class="author">Анастасия</span></li>
+                                                        </ul>
 
-                                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
-                                                                    class="date">07.01.2019 18:05</span>
-                                                        </li>
-
-
-                                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span
-                                                                    class="author">Александр Викторов</span></li>
-                                                    </ul>
-
-                                                    <div class="comment rounded ">
+                                                        <div class="comment rounded ">
 
 
-                                                        <div>
-                                                            Решил тоже написать отзыв. Мы катаемся на коньках редко,
-                                                            обычно на
-                                                            каникулах зимой ездим семьей и ...
+                                                            <div>
+                                                                Были на массовых катаниях в Ледовом дворце с детьми,
+                                                                причем младший
+                                                                ребенок не умеет кататься на ...
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="c-item-wrap col-md-4 col-xs-12">
+                                                    <div class="c-item">
+                                                        <ul class="c-info list-inline">
+
+                                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
+                                                                        class="date">07.01.2019 18:05</span>
+                                                            </li>
 
 
-                                            <div class="c-item-wrap col-md-4 col-xs-12">
-                                                <div class="c-item">
-                                                    <ul class="c-info list-inline">
+                                                            <li><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                                                <span
+                                                                        class="author">Александр Викторов</span></li>
+                                                        </ul>
 
-                                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
-                                                                    class="date">09.11.2018 17:37</span>
-                                                        </li>
-
-
-                                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span
-                                                                    class="author">Иван Иванович</span></li>
-                                                    </ul>
-
-                                                    <div class="comment rounded ">
+                                                        <div class="comment rounded ">
 
 
-                                                        <div>
-                                                            Катались с коллегами, заказывали массовое катание для
-                                                            организации.
-                                                            Очень весело провели время!
+                                                            <div>
+                                                                Решил тоже написать отзыв. Мы катаемся на коньках редко,
+                                                                обычно на
+                                                                каникулах зимой ездим семьей и ...
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="c-item-wrap col-md-4 col-xs-12">
+                                                    <div class="c-item">
+                                                        <ul class="c-info list-inline">
 
+                                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span
+                                                                        class="date">09.11.2018 17:37</span>
+                                                            </li>
+
+
+                                                            <li><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                                                <span
+                                                                        class="author">Иван Иванович</span></li>
+                                                        </ul>
+
+                                                        <div class="comment rounded ">
+
+
+                                                            <div>
+                                                                Катались с коллегами, заказывали массовое катание для
+                                                                организации.
+                                                                Очень весело провели время!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforelse
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="clearfix">&nbsp;</div>
-                                <div class="btns center"><a class="btn btn-default" href="/otzyvy"><i
+                                <div class="btns center"><a class="btn btn-default" href="{{route('reviews')}}"><i
                                                 class="fa fa-chevron-circle-right" aria-hidden="true"></i> Все
-                                        отзывы</a> <a
-                                            class="btn btn-primary" href="/otzyvy"><i class="fa fa-pencil-square-o"
-                                                                                      aria-hidden="true"></i> Написать
-                                        отзыв</a>
+                                        отзывы</a>
                                 </div>
                             </div>
                         </div>

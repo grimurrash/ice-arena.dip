@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
@@ -48,7 +49,9 @@ class CommentController extends Controller
                 'author' => $request->author,
                 'post_id' => $post->id,
             ]);
-            return view('posts.index', compact('post'));
+            $news_more = Post::newsMore(6);
+            $categories = Category::all();
+            return view('posts.index', compact(['post', 'news_more', 'categories']));
         }
     }
 

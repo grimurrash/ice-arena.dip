@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <form action="{{asset('posts/search')}}" method="post">
+                        <form action="{{route('posts.search')}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="search">Поиск:</label>

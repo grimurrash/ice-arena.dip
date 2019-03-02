@@ -7,6 +7,10 @@
         <link href="/public/css/css-36da8-27468.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="/public/css/css-579db-00020.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="/public/css/fonts.css" rel="stylesheet" type="text/css"/>
+        {{--<script src="/public/fontawesome/js/all.min.js"></script>--}}
+        {{--<link rel="stylesheet" href="/public/fontawesome/css/all.min.css">--}}
+        {{--<script src="/public/bootstrap/js/bootstrap.min.js"></script>--}}
+        {{--<link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css">--}}
         <script src="/public/js/js-3444a-00020.js" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(window).on('load', function () {
@@ -110,7 +114,19 @@
 
 
                             </article>
+                            @auth
+                                {{--@if(Auth::user()->permission === 'admin')--}}
+                                    <a href="{{ asset("admin/posts/$post->link/edit") }}"
+                                       class="btn btn-primary btn-lg btn-block">
+                                         Редактировать
+                                    </a>
+                                    <a href="{{ asset("admin/posts/$post->link/delete") }}" class="btn btn-danger btn-lg btn-block">
+                                         Удалить
+                                    </a>
+                                {{--@endif--}}
+                            @endauth
                             <!-- //Article -->
+                            <hr>
                             <div class="card">
                                 <div class="card-header">
                                     <h3>Комментарии</h3>
@@ -120,10 +136,10 @@
                                         <div class="card bg-light mb-3">
                                             <div class="card-header row" style="margin: 0">
                                                 <div class="col-sm-6 text-left ">
-                                                    <h5 class="text-muted">{{ $post->user->name }}</h5>
+                                                    <h5 class="text-muted">{{ $comment->author }}</h5>
                                                 </div>
                                                 <div class="col-sm-6 text-right">
-                                                    <small class="text-muted">{{date('H:i d.m.Y',strtotime($post->created_at))}}</small>
+                                                    <small class="text-muted">{{date('H:i d.m.Y',strtotime($comment->created_at))}}</small>
                                                 </div>
                                             </div>
                                             <div class="card-body">
@@ -137,10 +153,11 @@
                             </div>
                             <hr>
                             @auth
-                                <div>
-                                    <form action="{{asset("posts/{$post->link}/comments")}}" method="POST"
+                                <div class="card">
+                                    <form class="card-body" action="{{asset("posts/{$post->link}/comments")}}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
+                                        <h3>Добавить комментарий</h3>
                                         <div class="form-group">
                                             <label for="name">Имя(обязательно):</label>
                                             <input type="text" required id="name" class="form-control" name="author">
@@ -161,67 +178,23 @@
                     <!-- SIDEBAR LEFT -->
                     <div class="t3-sidebar t3-sidebar-left col-xs-12 col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9 ">
                         <div class="t3-module module_menu vmenu-mod " id="Mod123">
-                            <div class="module-inner"><h3 class="module-title "><span>Пресс центр</span></h3>
+                            <div class="module-inner"><h3 class="module-title "><span>Каталог</span></h3>
                                 <div class="module-ct">
                                     <ul class="menu" id="vmenu">
                                         @forelse($categories as $category)
                                             <li class="item-224 li-"><a
-                                                        href="{{ asset('posts/categories/'.$category->id) }}">
+                                                        href="{{ asset('posts/categories/'.$category->link) }}">
                                                     <span class="" aria-hidden="true"></span>
                                                     <span class="item-text">{{$category->name}}</span>
                                                 </a>
                                             </li>
                                         @empty
-                                            <div class="news-item-cont col-md-12">
-                                                <div class="news-item">
-                                                    <div class="news-img">
-                                                        <a href="/press-tsentr/a-ty-idesh-na-ledovuyu-vecherinku-love-ice-party-14-fevralya-v-19-00"
-                                                           title="А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &amp;quot;Love Ice Party&amp;quot; 14 февраля в 19.00?"><img
-                                                                    src="/public/images/290x250/diamond620525640-9a1dec96619451f303c293cff36dfde9.jpg"
-                                                                    alt="А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &amp;quot;Love Ice Party&amp;quot; 14 февраля в 19.00?"/></a>
-                                                    </div>
-                                                    <div class="news-desc">
-                                                        <h4 class="news-title">
-                                                            <a href="/press-tsentr/a-ty-idesh-na-ledovuyu-vecherinku-love-ice-party-14-fevralya-v-19-00">
-                                                                А ТЫ ИДЕШЬ НА ЛЕДОВУЮ ВЕЧЕРИНКУ &quot;Love Ice Party&quot;
-                                                                14
-                                                                февраля в 19.00? </a>
-                                                        </h4>
-                                                        <div class="news-info">
-                                                            <dl class="article-info  muted">
-                                                                <dd class="published hasTooltip" title=""
-                                                                    data-original-title="Опубликовано: ">
-                                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                                    <time datetime="10.02.2019"
-                                                                          itemprop="datePublished">
-                                                                        10.02.2019
-                                                                    </time>
-                                                                </dd>
-
-                                                                <dd class="hits">
-                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                    <meta itemprop="interactionCount"
-                                                                          content="UserPageVisits:88">
-                                                                    Просмотров: 88
-                                                                </dd>
-                                                            </dl>
-
-                                                            <div class="jn-hit-n-rating">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="news-intro">
-                                                            💘Романтическая вечеринка в Ледовом дворце состоится 14
-                                                            февраля в
-                                                            19.00!!! Ледовая Арена и Love Radio Vologda 96,4 FM
-                                                            приглашают тебя
-                                                            провести, пожалуй, самый романтичный вечер в году...
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <li class="item-224 li-"><a
+                                                        href="#">
+                                                    <span class="" aria-hidden="true"></span>
+                                                    <span class="item-text">Новости</span>
+                                                </a>
+                                            </li>
                                         @endforelse
                                     </ul>
                                 </div>
@@ -236,7 +209,7 @@
                                                 <div class="news-item">
                                                     <div class="news-desc">
                                                         <h4 class="news-title">
-                                                            <a href="{{ asset('posts/'.$post->link) }}">
+                                                            <a href="{{ asset('posts/'.$news->link) }}">
                                                                 {{$news->title}} </a>
                                                         </h4>
                                                         <div class="news-info">
@@ -244,9 +217,9 @@
                                                                 <dd class="published hasTooltip" title=""
                                                                     data-original-title="Опубликовано: ">
                                                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                                    <time datetime="{{date('d.m.Y',strtotime($post->created_at))}}"
+                                                                    <time datetime="{{date('d.m.Y',strtotime($news->created_at))}}"
                                                                           itemprop="datePublished">
-                                                                        {{date('d.m.Y',strtotime($post->created_at))}}
+                                                                        {{date('d.m.Y',strtotime($news->created_at))}}
                                                                     </time>
                                                                 </dd>
                                                             </dl>
@@ -313,7 +286,7 @@
                         <li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip"
                                                                        title="Вы здесь: "></i></span></li>
                         <li><a href="/" class="pathway">Главная</a><span class="divider">/</span></li>
-                        <li><a href="{{asset('posts/categories/'.$post->category_id) }}"
+                        <li><a href="{{asset('posts/categories/'.$post->category->link) }}"
                                class="pathway">{{$post->category->name}}</a><span class="divider">/</span></li>
                         <li><span>{{$post->title}}</span>
                         </li>
