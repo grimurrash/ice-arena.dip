@@ -10,7 +10,7 @@
                             @csrf
                             @if($error)
                                 <div class="alert alert-danger w-100" role="alert">
-                                    {{$message}}
+                                    {{$error}}
                                 </div>
                             @endif
                             <div class="form-group">

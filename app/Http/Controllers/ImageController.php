@@ -52,9 +52,9 @@ class ImageController extends Controller
                 'name' => $request->name,
                 'link' => $link
             ]);
-            $this->index("Изобращение успешно добавлено!");
+            return $this->index("Изобращение успешно добавлено!");
         } else {
-            $this->create("Изобращение с таким названием уже сущетсвует");
+           return $this->create("Изобращение с таким названием уже сущетсвует");
         }
     }
 
