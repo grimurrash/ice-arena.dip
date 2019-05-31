@@ -17,10 +17,12 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('comment');
             $table->string('author');
+            $table->boolean('publish')->default(0);
             $table->bigInteger('post_id')->unsigned();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
         });
+        \Illuminate\Support\Facades\Artisan::call('db:seed');
     }
 
     /**

@@ -14,19 +14,13 @@
                         @endif
                         @auth
                             <div class="list-group">
-                                <a href="{{ route('categories.create') }}"
-                                   class="list-group-item list-group-item-action">Добавить категорию</a>
                                 <a href="{{ route('categories.index') }}"
                                    class="list-group-item list-group-item-action">Посмотреть категорию</a>
-                                <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action">Добавить
-                                    новость</a>
-                                <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action">Посмотреть
-                                    новость</a>
-                                {{--<a href="#" class="list-group-item list-group-item-action">Изменить меню</a>--}}
-                                <a href="{{ route('images.create') }}" class="list-group-item list-group-item-action">Добавить
-                                    Изображение</a>
                                 <a href="{{ route('images.index') }}" class="list-group-item list-group-item-action">Просмотреть
                                     Изображение</a>
+                                <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action">Посмотреть
+                                    новость</a>
+                                <a href="{{ route('comments.index') }}" class="list-group-item list-group-item-action">Модерация комментариев</a>
                             </div>
                         @endauth
                     </div>

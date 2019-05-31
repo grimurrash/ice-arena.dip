@@ -6,6 +6,7 @@ use App\Category;
 use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -17,7 +18,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::where('publish',0)->paginate(10);
+        return view('admin.comments.index',compact('comments'));
     }
 
     /**
@@ -49,10 +51,8 @@ class CommentController extends Controller
                 'author' => $request->author,
                 'post_id' => $post->id,
             ]);
-            $news_more = Post::newsMore(6);
-            $categories = Category::all();
-            return view('posts.index', compact(['post', 'news_more', 'categories']));
         }
+        return redirect()->back();
     }
 
     /**
@@ -74,29 +74,16 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        $comment->update([
+            'publish'=>1
+        ]);
+        Session::flash('message','Комментарий разрешен');
+        return redirect()->route('comments.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Comment $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Comment $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
+    public function delete(Comment $comment){
+        $comment->delete();
+        Session::flash('message','Комментарий удален');
+        return redirect()->route('comments.index');
     }
 }

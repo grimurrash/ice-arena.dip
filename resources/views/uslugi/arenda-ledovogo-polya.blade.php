@@ -237,9 +237,7 @@
                                                 <div class='row-fluid'>
                                                     <div class='span12 ba-gallery-grid css-style-1'>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?46'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya-4.jpg?1549826803'
                                                                         alt=''>
@@ -252,9 +250,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?47'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya-3.jpg?1549826803'
                                                                         alt=''>
@@ -267,9 +263,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?48'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya-2.jpg?1549826803'
                                                                         alt=''>
@@ -282,9 +276,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?49'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya-1.jpg?1549826803'
                                                                         alt=''>
@@ -297,9 +289,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?106'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya2.jpg?1549826803'
                                                                         alt=''>
@@ -312,9 +302,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?107'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya1.jpg?1549826803'
                                                                         alt=''>
@@ -327,9 +315,7 @@
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
-                                                             style='display: none;'><a
-                                                                    href='/uslugi/arenda-ledovogo-polya?108'
-                                                                    class='ba-gallery-image-link'></a>
+                                                             style='display: none;'>
                                                             <div class='ba-image'><img
                                                                         data-original='/public/images/bagallery/gallery-1/thumbnail/category-1/Arenda-ledovogo-polya.jpg?1549826803'
                                                                         alt=''>

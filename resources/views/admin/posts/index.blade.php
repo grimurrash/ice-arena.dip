@@ -3,44 +3,80 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            @if($message)
-                <div class="alert alert-success w-100" role="alert">
-                    {{$message}}
-                </div>
-            @endif
             <div class="col-md-8">
-                <div class="card ">
-                    <div class="card-header bg-light text-center">
-                        <h2 class="card-title">{!! $post->title !!}</h2>
-                        @auth
-                            @if(Auth::user()->permission === 'user')
-                                <a href="{{ asset("posts/$post->link/edit") }}"
-                                   class="btn btn-primary btn-lg btn-block">
-                                     Редактировать
-                                </a>
-                                <a href="{{ asset("posts/$post->link/delete") }}" class="btn btn-danger btn-lg btn-block">
-                                     Удалить
-                                </a>
-                            @endif
-                        @endauth
+                @if(session()->has('message'))
+                    <div class="alert alert-success mb-3" role="alert">
+                        {{ session()->get('message') }}
                     </div>
-                    <div style="width: 100%;display: flex; justify-content: center;">
-                       <img src="{{ asset("public/images/upload/".$post->image->link)}}"
-                                                                    class="card-img-top" alt="..." style="width: auto; max-width: 100%">
+                @endif
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form action="{{ route('posts.search')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="search">Поиск:</label>
+                                <input id="search" required type="text" class="form-control"
+                                       placeholder="Текст для поиска" value="{{old('search')}}"
+                                       name="search">
+                            </div>
+                            <input type="submit" class="btn btn-success btn-lg btn-block" value="Искать">
+                        </form>
                     </div>
-                    <div class="card-body ">
-                        <div>
-                            <h4>Категория: {!! $post->category->name !!}</h4>
-                        </div>
-                        <div>
-                            <p>{!! $post->text !!}</p>
-                        </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div style="position:relative;">
+                        <h3 class="text-center mt-3 mb-4">Посты</h3>
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary"
+                           style="position:absolute; top: 15px; right: 15px">Создать новый пост</a>
                     </div>
-                    <div class="card-footer row" style="margin: 0">
-                        <div class="col-sm-6">
-                            <small class="text-muted">{{date('H:i d.m.Y',strtotime($post->created_at))}}</small>
-                        </div>
-                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th>Категория</th>
+                            <th>Изображение</th>
+                            <th>Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($posts as $post)
+                            <tr>
+                                <th>{!!  $post->id !!}</th>
+                                <th><a href="{{route('posts.show',$post)}}">{!! $post->title !!} </a></th>
+                                <th>{!! $post->category->name !!}</th>
+                                <th>
+                                    <a href="{{route('posts.show',$post)}}">
+                                        <img src="{{ asset("public/images/upload/".$post->image->link)}}"
+                                             style="width: 150px" alt=" {{$post->image->name }}">
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="{{ route('posts.edit',$post) }}"
+                                       class="btn btn-primary ">
+                                        Редактировать
+                                    </a>
+                                    <a href="{{ route('posts.delete',$post) }}" class="btn btn-danger ml-3">
+                                        Удалить
+                                    </a>
+                                </th>
+                            </tr>
+                        @empty
+                            <tr>
+                                <th colspan="5" class="text-center">Нет постов</th>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="5">
+                                {{ $posts->links() }}
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>

@@ -6,18 +6,19 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ asset("admin/posts/$post->link/update") }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('posts.update',$post) }}" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_method" value="PUT"/>
                             @csrf
-                            @if($error)
+                            @if(session()->has('error'))
                                 <div class="alert alert-danger" role="alert">
-                                    {{$error}}
+                                    {{ session()->get('error') }}
                                 </div>
                             @endif
                             <div class="form-group">
                                 <label for="title">Введите заголовок поста</label>
                                 <input id="title" required type="text" class="form-control"
                                        placeholder="Заголовок поста"
-                                       value="{{$post->title}}"
+                                       value="{{ old('title',$post->title) }}"
                                        name="title">
                             </div>
 
@@ -25,7 +26,7 @@
                                 <label for="category_id">Выберите категорию поста</label>
                                 <select required id="category_id" class="form-control" name="category_id">
                                     @forelse($categories as $cat)
-                                        @if($cat->id == $post->categor_id)
+                                        @if($cat->id == old('category_id',$post->category_id))
                                             <option selected value="{{$cat->id}}">{{$cat->name}}</option>
                                         @else
                                             <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -38,10 +39,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="image">Загрузите изобращение поста</label>
+                                <label for="image">Выберите ранее загруженное изобращение</label>
                                 <select id="image" required name="image"  class="form-control">
                                     @forelse($images as $img)
-                                        @if($img->id == $post->image_id)
+                                        @if($img->id == old('image',$post->image_id))
                                             <option selected value="{{$img->id}}">{{$img->name}}</option>
                                         @else
                                             <option value="{{$img->id}}">{{$img->name}}</option>
@@ -54,13 +55,13 @@
 
                             <div class="form-group">
                                 <label for="anons">Введите краткую информацию о вашем посте</label>
-                                <textarea required id="anons" style="height: 300px;" class="form-control"
-                                          name="anons">{{$post->anons}}</textarea>
+                                <textarea required id="anons" style="height: 100px;" class="form-control"
+                                          name="anons">{{ old('anons',$post->anons) }}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="text">Введите текст поста</label>
-                                <textarea required id="text" class="form-control" style="height: 500px;" name="text">{{$post->text}}</textarea>
+                                <textarea required id="text" class="form-control" style="height: 200px;" name="text">{{ old('text',$post->text) }}</textarea>
                             </div>
 
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Сохранить">

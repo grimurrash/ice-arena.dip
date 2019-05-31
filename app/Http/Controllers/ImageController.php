@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ImageController extends Controller
 {
@@ -13,20 +15,10 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($message = '')
+    public function index()
     {
-        $images = Image::all();
-        return view('admin.images.index', compact('images', 'message'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($error = "")
-    {
-        return view('admin.images.create', compact('error'));
+        $images = Image::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.images.index', compact('images'));
     }
 
     /**
@@ -38,7 +30,7 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('image');
-        $link = $this->translit($request->name) . '.' . $file->getClientOriginalExtension();
+        $link = Str::slug($request->name, '-') . '.' . $file->getClientOriginalExtension();
         $valid = Validator::make([
             'image' => $request->image,
             'link' => $link
@@ -46,16 +38,17 @@ class ImageController extends Controller
             'link' => 'required|string|max:255|unique:images',
             'image' => 'required|image'
         ]);
-        if (!$valid->fails()) {
-            $file->move(public_path('images/upload'), $link);
-            Image::create([
-                'name' => $request->name,
-                'link' => $link
-            ]);
-            return $this->index("Изобращение успешно добавлено!");
-        } else {
-           return $this->create("Изобращение с таким названием уже сущетсвует");
+        if ($valid->fails()) {
+            Session::flash('error', 'Изобращение с таким названием уже сущетсвует');
+            return redirect()->back()->withInput();
         }
+        $file->move(public_path('images/upload'), $link);
+        Image::create([
+            'name' => $request->name,
+            'link' => $link
+        ]);
+        Session::flash('message', 'Изобращение успешно добавлено');
+        return redirect()->route('images.index');
     }
 
     /**
@@ -98,20 +91,10 @@ class ImageController extends Controller
      * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function delete(Image $image)
     {
-        //
-    }
+        $image->delete();
+        return redirect()->route('images.index');
 
-    public function translit($s)
-    {
-        $s = (string)$s; // преобразуем в строковое значение
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
-        $s = preg_replace('/[^\p{L}0-9 ]/iu', '', $s);
-//        $s = preg_replace('/\d/', '', $s); // удаляет все спецсимволы
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = strtr($s, array(' ' => '-', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
-        return $s; // возвращаем результат
     }
 }

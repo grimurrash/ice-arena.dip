@@ -173,7 +173,6 @@
                                             </div>
                                         </div>
                                     @endforelse
-                                    <div id="comments-footer" align="center"></div>
                                 </div>
                             </div>
 

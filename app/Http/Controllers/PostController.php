@@ -6,9 +6,12 @@ use App\Category;
 use App\Image;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -17,10 +20,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($search = "")
+    public function index()
     {
-        $posts = Post::all();
-        return view('admin.posts.posts', compact(['posts', 'search']));
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $search = "";
+        return view('admin.posts.index', compact('posts','search'));
     }
 
     /**
@@ -28,10 +32,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($message = "")
+    public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact(['categories', 'message']));
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -49,41 +53,29 @@ class PostController extends Controller
             'image' => 'required|image',
             'category_id' => 'required'
         ]);
-
-        if (!$valid->fails()) {
-            $file = $request->file('image');
-            $link = $this->translit($request->title) . '.' . $file->getClientOriginalExtension();
-            $valid = Validator::make([
-                'image' => $request->image,
-                'link' => $link
-            ], [
-                'link' => 'required|string|max:255|unique:images',
-                'image' => 'required|image'
-            ]);
-            if (!$valid->fails()) {
-                $file->move(public_path('images/upload'), $link);
-                $image = Image::create([
-                    'name' => $request->title,
-                    'link' => $link
-                ]);
-            } else {
-                $image = Image::where('link', $link)->first();
-            }
-            $post = Post::create([
-                'title' => $request->title,
-                'link' => $this->translit($request->title),
-                'anons' => $request->anons,
-                'text' => $request->text,
-                'image_id' => $image->id,
-                'category_id' => $request->category_id,
-            ]);
-            $message = "Пост категории успешно создан!";
-            return view('admin.posts.index', compact('post', 'message'));
-        } else {
-            $categories = Category::all();
-            $message = $valid->messages();
-            return view('admin.posts.create', compact(['categories', 'message']));
+        if ($valid->fails()) {
+            Session::flash('error', $valid->errors()->first());
+            return redirect()->back()->withInput();
         }
+
+        $file = $request->file('image');
+        $link = Str::slug($request->title, '-') . '-' . Carbon::now()->format('dmHi') . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('images/upload'), $link);
+        $image = Image::create([
+            'name' => $request->title,
+            'link' => $link
+        ]);
+        $post = Post::create([
+            'title' => $request->title,
+            'link' => Str::slug($request->title),
+            'anons' => $request->anons,
+            'text' => $request->text,
+            'image_id' => $image->id,
+            'category_id' => $request->category_id,
+        ]);
+        Session::flash('message', 'Пост успешно создан');
+        return redirect()->route('posts.show', $post);
+
     }
 
     /**
@@ -92,10 +84,9 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($link, $message = "")
+    public function show(Post $post)
     {
-        $post = Post::where('link', $link)->first();
-        return view('admin.posts.index', compact('post', 'message'));
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -104,13 +95,13 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($link)
+    public function edit($post)
     {
-        $post = Post::where('link', $link)->first();
-        $error = '';
+
+        $post = Post::where('link', $post)->first();
         $categories = Category::all();
         $images = Image::all();
-        return view('admin.posts.edit', compact('post', 'error', 'images', 'categories'));
+        return view('admin.posts.edit', compact('post', 'images', 'categories'));
     }
 
     /**
@@ -120,35 +111,28 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $link)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::where('link', $link)->first();
         $valid = Validator::make($request->all(), [
             'title' => 'required|string|max:255|unique:posts,title,' . $post->id,
             'anons' => 'required|string',
             'text' => 'required|string',
             'category_id' => 'required|string',
         ]);
-
-        if (!$valid->fails()) {
-            $post->update([
-                'title' => $request->title,
-                'link' => $this->translit($request->title),
-                'anons' => $request->anons,
-                'text' => $request->text,
-                'image_id' => $request->image,
-                'category_id' => $request->category_id,
-            ]);
-
-
-            $message = "Пост успешно отредактирован!";
-            return view('admin.posts.index', compact('post', 'message'));
-        } else {
-            $error = $valid->messages();
-            $categories = Category::all();
-            $images = Image::all();
-            return view('admin.posts.edit', compact('post', 'error', 'images', 'categories'));
+        if ($valid->fails()) {
+            Session::flash('error', $valid->errors()->first());
+            return redirect()->back()->withInput();
         }
+        $post->update([
+            'title' => $request->title,
+            'link' => Str::slug($request->title),
+            'anons' => $request->anons,
+            'text' => $request->text,
+            'image_id' => $request->image,
+            'category_id' => $request->category_id,
+        ]);
+        Session::flash('message', 'Пост успешно отредактирован!');
+        return redirect()->route('posts.show',$post);
     }
 
     /**
@@ -162,44 +146,24 @@ class PostController extends Controller
         //
     }
 
-    public function delete($link)
+    public function delete($post)
     {
-        Post::where('link', $link)->first()->delete();
-        $posts = Post::all();
-        return view('admin.home', compact('posts'));
+        $post = Post::where('link', $post)->first();
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 
     public function search(Request $request)
     {
         $search = $request->search;
-        $cat = Category::where('name', 'LIKE', "%$search%")->get();
-        if (!count($cat)) {
-            $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->get();
-        } else {
-            $posts = [];
-            foreach ($cat as $category) {
-                foreach ($category->posts as $post) {
-                    $posts[] = $post;
-                }
-            }
-        }
+
+        $posts = Post::where('title', 'LIKE', "%$search%")->orWhere('text', 'LIKE', "%$search%")->orWhere('anons', 'LIKE', "%$search%")->orWhere('category_id','LIKE',"%$search%")->paginate(10);
+
         foreach ($posts as $post) {
             $post->title = str_replace($search, "<mark>{$search}</mark>", $post->title);
             $post->text = str_replace($search, "<mark>{$search}</mark>", $post->text);
             $post->anons = str_replace($search, "<mark>{$search}</mark>", $post->anons);
         }
-        return view('admin.posts.posts', compact(['posts', 'search']));
-    }
-
-    public function translit($s)
-    {
-        $s = (string)$s; // преобразуем в строковое значение
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
-        $s = preg_replace('/[^\p{L}0-9 ]/iu', '', $s);
-//        $s = preg_replace('/\d/', '', $s); // удаляет все спецсимволы
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = strtr($s, array(' ' => '-', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
-        return $s; // возвращаем результат
+        return view('admin.posts.index', compact('posts','search'));
     }
 }

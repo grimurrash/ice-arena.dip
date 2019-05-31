@@ -16,12 +16,16 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'Controller@index');
 
+Route::get('kontakty',function (){
+    return view('kontakty');
+})->name('kontakty');
 Route::get('posts', 'Controller@posts_default');
 Route::get('posts/{link}', 'Controller@posts_index');
 Route::get('posts/categories/{link}','Controller@categories');
 Route::get('reviews', 'Controller@comments')->name('reviews');
-Route::post('/posts/{link}/comments', 'CommentController@store');
-Route::post('/posts/search', 'PostController@search')->name('posts.search');
+Route::post('/posts/{post}/comments', 'CommentController@store')->name('post.comments');
+
+
 Route::get('post/default',function (){
     return view('posts.default');
 })->name('posts.default');
@@ -63,19 +67,28 @@ Route::middleware('auth')->group(function () {
     Route::get('home',function ($message = ''){
         return view('admin.home',compact(['message']));
     })->name('admin.home');
+
+
+//    Posts
+    Route::resource('admin/posts','PostController');
+    Route::get('admin/posts/{post}/delete','PostController@delete')->name('posts.delete');
+    Route::post('admin/posts/search', 'PostController@search')->name('posts.search');
+
+//    Comments
+    Route::get('admin/comments','CommentController@index')->name('comments.index');
+    Route::get('admin/comments/{comment}/edit','CommentController@edit')->name('comments.edit');
+    Route::get('admin/comments/{comment}/delete','CommentController@delete')->name('comments.delete');
+
+
+//    Images
     Route::get('admin/images', 'ImageController@index')->name('images.index');
-    Route::get('admin/images/create', 'ImageController@create')->name('images.create');
-    Route::post('admin/images/create', 'ImageController@store')->name('images.store');
-    Route::get('admin/posts', 'PostController@index')->name('posts.index');
-    Route::get('admin/posts/create', 'PostController@create')->name('posts.create');
-    Route::post('admin/posts', 'PostController@store')->name('posts.store');
-    Route::get('admin/posts/{link}', 'PostController@show')->name('posts.show');
-    Route::get('admin/posts/{link}/edit', 'PostController@edit')->name('posts.edit');
-    Route::post('admin/posts/{link}/update', 'PostController@update')->name('posts.update');
-    Route::get('admin/posts/{link}/delete', 'PostController@delete')->name('posts.delete');
-    Route::post('admin/categories/store', 'CategoryController@store')->name('categories.store');
+    Route::post('admin/images', 'ImageController@store')->name('images.store');
+    Route::post('admin/images/{image}/delete', 'ImageController@delete')->name('images.delete');
+//    Categories
     Route::get('admin/categories', 'CategoryController@index')->name('categories.index');
-    Route::get('admin/categories/create', 'CategoryController@create')->name('categories.create');
+    Route::post('admin/categories', 'CategoryController@store')->name('categories.store');
+    Route::get('admin/categories/{category}/delete', 'CategoryController@delete')->name('categories.delete');
+
 });
 
 

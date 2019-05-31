@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -24,9 +27,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($message = "")
+    public function create()
     {
-        return view('admin.categories.create', compact('message'));
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -37,36 +40,28 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $link = $this->translit($request->name);
         $valid = Validator::make([
             'name' => $request->name,
-            'link' => $link
+            'link' => Str::slug($request->name,'-')
         ], [
             'name' => ['required', 'string'],
             'link' => ['required', 'string', 'max:255', 'unique:categories'],
         ]);
         if ($valid->fails()) {
-            $this->create("Категория с таким названием уже существует.");
-        } else {
-            Category::create([
-                'name' => $request->name,
-                'link' => $link
-            ]);
-            $categories = Category::all();
-            return view('admin.categories.index', compact('categories'));
+            Session::flash('error', 'Категория с таким именем уже существует');
+            return redirect()->back()->withInput();
         }
+        Category::create([
+            'name' => $request->name,
+            'link' => Str::slug($request->name,'-')
+        ]);
+        Session::flash('message', 'Категория успешно создана');
+        return redirect()->route('categories.index');
 
     }
-
-    public function translit($s)
-    {
-        $s = (string)$s; // преобразуем в строковое значение
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s); // переводим строку в нижний регистр (иногда надо задать локаль)
-        $s = preg_replace('/[^\p{L}0-9 ]/iu', '', $s);
-//        $s = preg_replace('/\d/', '', $s); // удаляет все спецсимволы
-        $s = trim($s); // убираем пробелы в начале и конце строки
-        $s = strtr($s, array(' ' => '-', 'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'j', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'ъ' => '', 'ь' => ''));
-        return $s; // возвращаем результат
+    public function delete(Request $request, Category $category){
+        $category->delete();
+        Session::flash('message', 'Категория успешно удалена');
+        return redirect()->route('categories.index');
     }
 }

@@ -163,6 +163,11 @@
                                     <span class="item-text">Реклама</span>
                                 </a>
                             </li>
+                            <li class="item-112 li-"><a href="{{ route('kontakty') }}">
+                                    <span aria-hidden="true"></span>
+                                    <span class="item-text">Контакты</span>
+                                </a>
+                            </li>
                             {{--<li class="item-115 li- rasp-btn hidden-child parent"><a href="/raspisaniya">--}}
                                     {{--<span class="fa fa-calendar" aria-hidden="true"></span>--}}
                                     {{--<span class="item-text">Расписания</span>--}}

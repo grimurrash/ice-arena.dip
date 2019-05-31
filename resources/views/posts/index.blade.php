@@ -132,7 +132,7 @@
                                     <h3>Комментарии</h3>
                                 </div>
                                 <div class="card-body">
-                                    @forelse($post->comments as $comment)
+                                    @forelse($post->comments() as $comment)
                                         <div class="card bg-light mb-3">
                                             <div class="card-header row" style="margin: 0">
                                                 <div class="col-sm-6 text-left ">
@@ -154,7 +154,7 @@
                             <hr>
                             @auth
                                 <div class="card">
-                                    <form class="card-body" action="{{asset("posts/{$post->link}/comments")}}" method="POST"
+                                    <form class="card-body" action="{{route('post.comments',$post)}}" method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <h3>Добавить комментарий</h3>
