@@ -102,9 +102,10 @@
                                         </p>
                                     </div>
                                     <div class="clearfix">&nbsp;</div>
-                                    <p>
+                                    <!-- <p>
                                         <img style="display: block; margin-top: 20px; margin-left: auto; margin-right: auto;"
-                                             src="{{ asset('public/images/arena-main-photo.jpg') }}" alt="arena main photo" width="1499"></p>
+                                             src="{{ asset('public/images/arena-main-photo.jpg') }}" alt="arena main photo" width="1499">
+                                    </p> -->
                                 </section>
 
                                 <!-- footer -->
