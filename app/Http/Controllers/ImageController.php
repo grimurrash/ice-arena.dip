@@ -93,7 +93,12 @@ class ImageController extends Controller
      */
     public function delete(Image $image)
     {
-        $image->delete();
+        if($image->post->count()==0){
+            $image->delete();
+            Session::flash('message','Изобращение удалено');
+        }else{
+            Session::flash('message','Нельзя удалить изобращение, так как оно привязано к посту');
+        }
         return redirect()->route('images.index');
 
     }

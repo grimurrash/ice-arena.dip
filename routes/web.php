@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
 //    Images
     Route::get('admin/images', 'ImageController@index')->name('images.index');
     Route::post('admin/images', 'ImageController@store')->name('images.store');
-    Route::post('admin/images/{image}/delete', 'ImageController@delete')->name('images.delete');
+    Route::get('admin/images/{image}/delete', 'ImageController@delete')->name('images.delete');
 //    Categories
     Route::get('admin/categories', 'CategoryController@index')->name('categories.index');
     Route::post('admin/categories', 'CategoryController@store')->name('categories.store');
