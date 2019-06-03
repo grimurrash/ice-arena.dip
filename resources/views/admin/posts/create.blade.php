@@ -25,14 +25,13 @@
                                     @forelse($categories as $cat)
                                         <option {{ old('category_id') === $cat->id ? 'checked' : '' }} value="{{$cat->id}}">{{$cat->name}}</option>
                                     @empty
-                                        <option value="1">test</option>
-                                        <option value="2">test</option>
+                                        <option readonly value="1">Категорий нет</option>
                                     @endforelse
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="anons">Загрузите изобращение новости</label>
+                                <label for="anons">Загрузите изображение новости</label>
                                 <input required type="file" class="form-control-file" name="image"
                                        placeholder="Укажите путь к изобращению">
                             </div>

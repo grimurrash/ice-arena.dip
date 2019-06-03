@@ -79,19 +79,31 @@
 
 
                             <div id="jc">
-                                <div id="comments"><h4>Комментарии
+
+                                @if(session()->has('message'))
+                                    <div class="text-center">
+                                        <div class="alert alert-success">{{ session()->get('message') }}</div>
+                                    </div>
+                                @endif
+                                @if(session()->has('errors'))
+                                    <div class="text-center">
+                                        <div class="alert alert-danger">{{ session()->get('errors') }}</div>
+                                    </div>
+                                @endif
+                                <div id="comments"><h4>Отзывы
                                     </h4>
-                                    @forelse($comments as $comment)
+                                    @forelse($reviews as $review)
                                         <div class="comments-list" id="comments-list-0">
                                             <div class="even" id="comment-item-7">
                                                 <div class="rbox">
                                                     <div class="comment-box">
                                                         <div class="comment-header">
-                                                            <span class="comment-author">{{$comment->author}}</span>
+                                                            <span class="comment-author">{{$review->author}}</span>
                                                         </div>
-                                                        <div class="comment-body" id="comment-body-7">{{$comment->comment}}
+                                                        <div class="comment-body"
+                                                             id="comment-body-7">{{$review->comment}}
                                                             <span class="comments-buttons">
-                                                        <span class="comment-date">{{date('d.m.Y H:i',strtotime($comment->created_at))}}</span>
+                                                        <span class="comment-date">{{date('d.m.Y H:i',strtotime($review->created_at))}}</span>
                                                         </span>
                                                         </div>
                                                         <div class="clear"></div>
@@ -107,62 +119,7 @@
                                                         <div class="comment-header">
                                                             <span class="comment-author">Анастасия</span>
                                                         </div>
-                                                        <div class="comment-body" id="comment-body-7">Были на массовых
-                                                            катаниях в
-                                                            Ледовом дворце с детьми, причем младший ребенок не умеет
-                                                            кататься на
-                                                            коньках совсем. Приятно, что есть специальные приспособления
-                                                            для
-                                                            начинающих, не знаю как называются они, удобные и позволяют
-                                                            не
-                                                            падать))). Очень комфортно в здании, все продумано и отлично
-                                                            организовано Дети остались довольны катанием. <br/>Со
-                                                            своими
-                                                            коньками приходить можно и нужно! Экономия времени, не нужно
-                                                            стоять в
-                                                            очереди и можно заранее переодеться. Наличие шкафчиков и
-                                                            туалета
-                                                            прямо в
-                                                            помещении арены - супер удобно для посетителей с детьми.
-                                                            <br/>Спасибо
-                                                            администрации за отличный лед и возможность спортивно
-                                                            отдохнуть!!!
-                                                            <span class="comments-buttons">
-                                                        <span class="comment-date">10.02.2019 23:17</span>
-                                                        </span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comments-list" id="comments-list-0">
-                                            <div class="even" id="comment-item-7">
-                                                <div class="rbox">
-                                                    <div class="comment-box">
-                                                        <div class="comment-header">
-                                                            <span class="comment-author">Анастасия</span>
-                                                        </div>
-                                                        <div class="comment-body" id="comment-body-7">Были на массовых
-                                                            катаниях в
-                                                            Ледовом дворце с детьми, причем младший ребенок не умеет
-                                                            кататься на
-                                                            коньках совсем. Приятно, что есть специальные приспособления
-                                                            для
-                                                            начинающих, не знаю как называются они, удобные и позволяют
-                                                            не
-                                                            падать))). Очень комфортно в здании, все продумано и отлично
-                                                            организовано Дети остались довольны катанием. <br/>Со
-                                                            своими
-                                                            коньками приходить можно и нужно! Экономия времени, не нужно
-                                                            стоять в
-                                                            очереди и можно заранее переодеться. Наличие шкафчиков и
-                                                            туалета
-                                                            прямо в
-                                                            помещении арены - супер удобно для посетителей с детьми.
-                                                            <br/>Спасибо
-                                                            администрации за отличный лед и возможность спортивно
-                                                            отдохнуть!!!
+                                                        <div class="comment-body" id="comment-body-7">Нет отзывов
                                                             <span class="comments-buttons">
                                                         <span class="comment-date">10.02.2019 23:17</span>
                                                         </span>
@@ -173,6 +130,24 @@
                                             </div>
                                         </div>
                                     @endforelse
+                                </div>
+                                <hr>
+
+                                <div class="card">
+                                    <form class="card-body" action="{{route('review.store')}}" method="POST">
+                                        @csrf
+                                        <h3>Добавить отзыв</h3>
+                                        <div class="form-group">
+                                            <label for="name">Имя(обязательно):</label>
+                                            <input type="text" required id="name" class="form-control" name="author">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="comment">Комментарий:</label>
+                                            <textarea required id="comment" class="form-control"
+                                                      name="comment"></textarea>
+                                        </div>
+                                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Отправить">
+                                    </form>
                                 </div>
                             </div>
 

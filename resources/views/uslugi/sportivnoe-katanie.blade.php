@@ -296,10 +296,6 @@
                                                     src="/public/images/icons/zatochka.png"
                                                     alt="Заточка и формовка коньков"/><span
                                                     class="image-title">Заточка и формовка коньков</span></a></li>
-                                    <li><a href="#"><img src="/public/images/icons/coffe.png" alt="Кафе"/><span
-                                                    class="image-title">Кафе</span></a></li>
-                                    <li><a href="#"><img src="/public/images/icons/info.png" alt="Правила посещения"/><span
-                                                    class="image-title">Правила посещения</span></a></li>
                                 </ul>
                             </div>
                         </div>

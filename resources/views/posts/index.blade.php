@@ -59,6 +59,16 @@
                     <div id="t3-content" class="t3-content col-xs-12 col-sm-8 col-sm-push-4 col-md-9 col-md-push-3">
                         <div class="item-page news-page-bg clearfix">
                             <!-- Article -->
+                            @if(session()->has('message'))
+                                <div class="text-center">
+                                    <div class="alert alert-success">{{ session()->get('message') }}</div>
+                                </div>
+                            @endif
+                            @if(session()->has('errors'))
+                                <div class="text-center">
+                                    <div class="alert alert-danger">{{ session()->get('errors') }}</div>
+                                </div>
+                            @endif
                             <article>
                                 <meta itemprop="inLanguage" content="ru-RU"/>
                                 <meta itemprop="url"
@@ -152,10 +162,9 @@
                                 </div>
                             </div>
                             <hr>
-                            @auth
+                            
                                 <div class="card">
-                                    <form class="card-body" action="{{route('post.comments',$post)}}" method="POST"
-                                          enctype="multipart/form-data">
+                                    <form class="card-body" action="{{route('comment.store',$post)}}" method="POST">
                                         @csrf
                                         <h3>Добавить комментарий</h3>
                                         <div class="form-group">
@@ -170,7 +179,7 @@
                                         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Отправить">
                                     </form>
                                 </div>
-                            @endauth
+                            
                         </div>
                     </div>
                     <!-- //MAIN CONTENT -->

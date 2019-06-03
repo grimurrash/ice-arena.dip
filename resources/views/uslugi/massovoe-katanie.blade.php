@@ -327,11 +327,6 @@
                                             <li><a href="/uslugi/prokat-zatochka-i-formovka-konkov" target="_blank"><img
                                                             src="/public/images/icons/prokat.png" alt="Прокат коньков"/><span
                                                             class="image-title">Прокат коньков</span></a></li>
-                                            <li><a><img src="/public/images/icons/coffe.png" alt="Кафе"/><span
-                                                            class="image-title">Кафе</span></a></li>
-                                            <li><a><img src="/public/images/icons/info.png"
-                                                        alt="Правила посещения"/><span
-                                                            class="image-title">Правила посещения</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

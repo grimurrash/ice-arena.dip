@@ -35,9 +35,9 @@
     </head>
     <body>
     <div class="t3-wrapper features-intro features-intro-2">
-        @endsection
+@endsection
 
-        @section('content')
+@section('content')
             <div class="slider-wrap">
                 <div class="slider">
 

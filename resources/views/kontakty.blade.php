@@ -76,36 +76,23 @@
                                 <section class="article-content clearfix">
                                     <div class="col-md-6">
                                         <h3>Реквизиты:</h3>
-                                        <p>Муниципальное автономное учреждение "Ледовый дворец"</p>
+                                        <p>Муниципальная бюджетная организация дополнительного образования "Детско-юношеская спортивная школа "Арча Арена"</p>
                                         <p>ИНН 3525286517 &nbsp;КПП 352501001</p>
-                                        <p>Фактический и юридический адрес: 160024, Россия, Вологодская обл., г.
-                                            Вологда, ул. Пугачева, 44</p>
+                                        <p>Фактический и юридический адрес: 422000, РТ, г. Арск, ул. Сибирский тракт, д.14 А</p>
                                     </div>
                                     <div class="col-md-6">
                                         <h3>Контакты:</h3>
-                                        <p class="Textbody">Дежурный администратор/вахта тел.: (8172) 27-24 -09</p>
-                                        <p class="Textbody">ИО директора - Сергей Александрович, тел.: (8172)
-                                            27-24-07</p>
-                                        <p class="Textbody">Заместитель директора по экономической работе - Елена
-                                            Георгиевна,</p>
-                                        <p class="Textbody">тел.: (8172) 27-24-75</p>
-                                        <p class="Textbody">Ведущий специалист по маркетингу - Анжела Петровна, тел.:
-                                            (8172) 27-24-23</p>
-                                        <p class="Textbody">Ведущий специалист по кадрам - Галина Александровна, тел.:
-                                            (8172) 27-24-61</p>
-                                        <p class="Textbody">Ведущий юрист - Варвара Андреевна, тел.: (8172) 27-24-61</p>
-                                        <p>Факс: (8172) 27-24-61</p>
+                                        <p class="Textbody">Телефон: +7(843)-663-57-04</p>
                                         <p>E-mail:
                                             <span id="cloak1fff2e4003f1428eead824e8e846d2a4"><a
-                                                        href="mailto:liedovyi@mail.ru">liedovyi@mail.ru</a>
+                                                        href="mailto:liedovyi@mail.ru">	ArskArena@yandex.ru</a>
                                             </span>
                                         </p>
                                     </div>
                                     <div class="clearfix">&nbsp;</div>
-                                    <!-- <p>
+                                    <p
                                         <img style="display: block; margin-top: 20px; margin-left: auto; margin-right: auto;"
-                                             src="{{ asset('public/images/arena-main-photo.jpg') }}" alt="arena main photo" width="1499">
-                                    </p> -->
+                                             src="{{ asset('public/images/arena-main-photo.jpg') }}" alt="arena main photo" width="1499"></p>
                                 </section>
 
                                 <!-- footer -->

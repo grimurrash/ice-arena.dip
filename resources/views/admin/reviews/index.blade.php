@@ -12,12 +12,11 @@
             </div>
             <div class="col-md-10">
                 <div class="card">
-                    <h3 class="text-center mt-3 mb-4">Комментарии</h3>
+                    <h3 class="text-center mt-3 mb-4">Отзывы</h3>
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Пост</th>
                             <th>Автор</th>
                             <th>Текст</th>
                             <th>Статус</th>
@@ -25,15 +24,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($comments as $comment)
+                        @forelse($reviews as $review)
                             <tr>
-                                <th>{{ $comment->id }}</th>
-                                <th><a href="{{ route('posts.show',$comment->post) }}">{{ $comment->post->title }}</a>
-                                </th>
-                                <th>{{ $comment->author }}</th>
-                                <th>{!! $comment->comment !!}</th>
+                                <th>{{ $review->id }}</th>
+                                <th>{{ $review->author }}</th>
+                                <th>{!! $review->comment !!}</th>
                                 <th>
-                                    @if($comment->publish === 1)
+                                    @if($review->publish === 1)
                                         <span class="badge badge-success"
                                               style="font-size: 100% ;">Прошел модерацию</span>
                                     @else
@@ -42,13 +39,13 @@
                                     @endif
                                 </th>
                                 <th>
-                                    @if($comment->publish === 0)
-                                        <a href="{{ route('comments.edit',$comment) }}"
+                                    @if($review->publish === 0)
+                                        <a href="{{ route('reviews.edit',$review) }}"
                                            class="btn btn-success">
                                             Разрешить
                                         </a>
                                     @endif
-                                    <a href="{{ route('comments.delete',$comment) }}"
+                                    <a href="{{ route('reviews.delete',$review) }}"
                                        class="btn btn-danger">
                                         Удалить
                                     </a>
@@ -56,14 +53,14 @@
                             </tr>
                         @empty
                             <tr>
-                                <th colspan="6" class="text-center">Нет комментариев</th>
+                                <th colspan="5" class="text-center">Нет отзывов</th>
                             </tr>
                         @endforelse
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="6">
-                                {{ $comments->links() }}
+                            <th colspan="5">
+                                {{ $reviews->links() }}
                             </th>
                         </tr>
                         </tfoot>

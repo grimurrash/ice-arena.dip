@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Comment;
 use App\Post;
+use App\Review;
 use App\Reviews;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -20,7 +21,7 @@ class Controller extends BaseController
     {
         $posts = Post::lastPost();
         $news_more = Post::newsMore(4);
-        $comments = Comment::lastComments(3);
+        $comments = Review::lastComments(3);
         return view('welcome', compact('posts', 'news_more','comments'));
     }
 
@@ -40,8 +41,8 @@ class Controller extends BaseController
     }
 
     public function comments(){
-        $comments = Comment::lastComments();
-        return view('reviews',compact('comments'));
+        $reviews = Review::lastComments();
+        return view('reviews',compact('reviews'));
     }
 
     public function categories($link){

@@ -20,7 +20,8 @@
                                     Изображение</a>
                                 <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action">Посмотреть
                                     новость</a>
-                                <a href="{{ route('comments.index') }}" class="list-group-item list-group-item-action">Модерация комментариев</a>
+                                <a href="{{ route('comments.index') }}" class="list-group-item list-group-item-action">Комментарии</a>
+                                <a href="{{ route('reviews.index') }}" class="list-group-item list-group-item-action">Отзывы</a>
                             </div>
                         @endauth
                     </div>

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Comment;
-use App\Post;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-class CommentController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::orderBy('publish')->paginate(10);
-        return view('admin.comments.index',compact('comments'));
+        $reviews = Review::orderBy('publish')->paginate(10);
+        return view('admin.reviews.index',compact('reviews'));
     }
 
     /**
@@ -35,36 +33,34 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $link)
+    public function store(Request $request)
     {
-        $post = Post::where('link', $link)->first();
         $valid = Validator::make($request->all(), [
             'comment' => 'required|string',
             'author' => 'required|string'
         ]);
         if (!$valid->fails()) {
-            Session::flash('message','Комментарий отправлен на модерацию');
-            Comment::create([
+            Session::flash('message','Отзыв отправлен на модерацию');
+            Review::create([
                 'comment' => $request->comment,
                 'author' => $request->author,
-                'post_id' => $post->id,
             ]);
         }else{
             Session::flash('errors',$valid->errors()->first());
         }
-        return redirect()->back();
+        return redirect()->route('reviews')->withInput();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Review $review)
     {
         //
     }
@@ -72,21 +68,21 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Review $review)
     {
-        $comment->update([
+        $review->update([
             'publish'=>1
         ]);
         Session::flash('message','Комментарий разрешен');
-        return redirect()->route('comments.index');
+        return redirect()->route('reviews.index');
     }
 
-    public function delete(Comment $comment){
-        $comment->delete();
+    public function delete(Review $review){
+        $review->delete();
         Session::flash('message','Комментарий удален');
-        return redirect()->route('comments.index');
+        return redirect()->route('reviews.index');
     }
 }

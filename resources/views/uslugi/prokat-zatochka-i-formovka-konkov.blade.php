@@ -104,9 +104,6 @@
                         <div class="a-bg price2 u-tab">
                             <div class="container">
                                 <div class="row center">
-                                    <h3 id="zatohka" class="center">Заточка и формовка коньков <span
-                                            style="text-decoration: underline;">(УСЛУГИ ВРЕМЕННО НЕ ОКАЗЫВАЮТСЯ)</span>
-                                    </h3>
                                     <div class="col-md-6">
                                         <h4 class="center">СТОИМОСТЬ ЗАТОЧКИ</h4>
                                         <table class="table price-table" style="max-width: 600px;">

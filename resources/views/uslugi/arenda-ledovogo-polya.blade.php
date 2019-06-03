@@ -109,8 +109,7 @@
                                         записи и воспроизведения с комплектом профессиональных видеокамер.</p>
                                     <p><strong> Внимание! Аренда осуществляется строго по предварительной
                                             заявке</strong></p>
-                                    <p><strong> по телефонам:&nbsp;<a href="tel:+78172272423">(8172) 27-24-23</a> или <a
-                                                    href="tel:+78172272409">(8172) 27-24-09</a>.</strong></p>
+                                    <p><strong> по телефону:&nbsp;<a href="tel:+7(843)-663-57-04"> +7(843)-663-57-04</a>.</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -155,19 +154,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="a-bg dop-usl">
-                            <div class="container">
-                                <ul class="list-inline u5">
-                                    <li><a><img src="/public/images/icons/razd.png" alt="Раздевалки"/><span
-                                                    class="image-title">Раздевалки</span></a></li>
-                                    <li><a><img src="/public/images/icons/coffe.png" alt="Кафе"/><span
-                                                    class="image-title">Кафе</span></a></li>
-
-                                    <li><a><img src="/public/images/icons/info.png" alt="Правила посещения"/><span
-                                                    class="image-title">Правила посещения</span></a></li>
-                                </ul>
                             </div>
                         </div>
                         <div class="a-bg a-gallery">
@@ -246,7 +232,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-46'
-                                                                       value='{"id":"46","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-4.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-4.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-4.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-4.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"14","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-4.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"46","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-4.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-4.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-4.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-4.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"14","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-4.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -259,7 +245,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-47'
-                                                                       value='{"id":"47","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-3.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-3.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-3.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-3.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"1","imageId":"15","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-3.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"47","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-3.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-3.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-3.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-3.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"1","imageId":"15","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-3.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -272,7 +258,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-48'
-                                                                       value='{"id":"48","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-2.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-2.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-2.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-2.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"16","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-2.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"48","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-2.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-2.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-2.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-2.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"16","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-2.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -285,7 +271,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-49'
-                                                                       value='{"id":"49","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-1.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-1.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-1.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-1.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"17","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-1.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"49","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya-1.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya-1.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya-1.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya-1.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"17","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya-1.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -298,7 +284,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-106'
-                                                                       value='{"id":"106","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya2.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya2.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya2.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya2.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"18","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya2.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"106","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya2.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya2.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya2.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya2.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"18","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya2.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -311,7 +297,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-107'
-                                                                       value='{"id":"107","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya1.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya1.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya1.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya1.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"19","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya1.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"107","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya1.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya1.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya1.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya1.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"19","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya1.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                         <div class='ba-gallery-items category-0 category-1'
@@ -324,7 +310,7 @@
                                                                 </div>
                                                                 <input type='hidden' class='image-id'
                                                                        data-id='ba-image-108'
-                                                                       value='{"id":"108","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya.jpg","url":"http:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"20","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya.jpg","hideInAll":"0","suffix":""}'>
+                                                                       value='{"id":"108","form_id":"1","category":"category-1","name":"Arenda-ledovogo-polya.jpg","path":"\/images\/bagallery\/original\/Arenda-ledovogo-polya.jpg","url":"https:\/\/arena-vologda.ru\/images\/bagallery\/gallery-1\/watermark\/Arenda-ledovogo-polya.jpg","thumbnail_url":"\/images\/bagallery\/gallery-1\/thumbnail\/category-1\/Arenda-ledovogo-polya.jpg","title":"","short":"","alt":"","description":"","link":"","video":"","settings":null,"likes":"0","imageId":"20","target":"blank","lightboxUrl":"","watermark_name":"Arenda-ledovogo-polya.jpg","hideInAll":"0","suffix":""}'>
                                                             </div>
                                                         </div>
                                                     </div>

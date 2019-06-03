@@ -19,12 +19,14 @@ Route::get('/', 'Controller@index');
 Route::get('kontakty',function (){
     return view('kontakty');
 })->name('kontakty');
+
+
 Route::get('posts', 'Controller@posts_default');
 Route::get('posts/{link}', 'Controller@posts_index');
 Route::get('posts/categories/{link}','Controller@categories');
 Route::get('reviews', 'Controller@comments')->name('reviews');
-Route::post('/posts/{post}/comments', 'CommentController@store')->name('post.comments');
-
+Route::post('/posts/{post}/comments', 'CommentController@store')->name('comment.store');
+Route::post('reviews','ReviewController@store')->name('review.store');
 
 Route::get('post/default',function (){
     return view('posts.default');
@@ -79,11 +81,17 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/comments/{comment}/edit','CommentController@edit')->name('comments.edit');
     Route::get('admin/comments/{comment}/delete','CommentController@delete')->name('comments.delete');
 
+//    Reviews
+    Route::get('admin/reviews','ReviewController@index')->name('reviews.index');
+    Route::get('admin/reviews/{review}/edit','ReviewController@edit')->name('reviews.edit');
+    Route::get('admin/reviews/{review}/delete','ReviewController@delete')->name('reviews.delete');
+
 
 //    Images
     Route::get('admin/images', 'ImageController@index')->name('images.index');
     Route::post('admin/images', 'ImageController@store')->name('images.store');
     Route::get('admin/images/{image}/delete', 'ImageController@delete')->name('images.delete');
+
 //    Categories
     Route::get('admin/categories', 'CategoryController@index')->name('categories.index');
     Route::post('admin/categories', 'CategoryController@store')->name('categories.store');
