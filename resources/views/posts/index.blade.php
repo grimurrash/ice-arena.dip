@@ -142,7 +142,7 @@
                                     <h3>Комментарии</h3>
                                 </div>
                                 <div class="card-body">
-                                    @forelse($post->comments() as $comment)
+                                    @forelse($post->comments as $comment)
                                         <div class="card bg-light mb-3">
                                             <div class="card-header row" style="margin: 0">
                                                 <div class="col-sm-6 text-left ">

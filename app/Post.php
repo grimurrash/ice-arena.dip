@@ -10,16 +10,16 @@ class Post extends Model
 
     public function image()
     {
-        return Post::belongsTo(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
     public function category()
     {
-        return Post::belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function comments(){
-        return Comment::where('publish',1)->orderBy('created_at', 'desc')->get();
+        return $this->hasMany(Comment::class)->where('publish',1);
     }
 
     public static function lastPost()
