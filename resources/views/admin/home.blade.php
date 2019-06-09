@@ -22,6 +22,7 @@
                                     новость</a>
                                 <a href="{{ route('comments.index') }}" class="list-group-item list-group-item-action">Комментарии</a>
                                 <a href="{{ route('reviews.index') }}" class="list-group-item list-group-item-action">Отзывы</a>
+                                <a href="{{ route('feedback.index') }}" class="list-group-item list-group-item-action">Обратная связь</a>
                             </div>
                         @endauth
                     </div>

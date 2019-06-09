@@ -72,9 +72,18 @@
                                 <!-- Aside -->
                                 <!-- //Aside -->
 
-
+                                @if(session()->has('message'))
+                                    <div class="alert alert-success">
+                                        Заявка успешно добавлена
+                                    </div>
+                                @endif
+                                @if(session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error') }}
+                                    </div>
+                                @endif
                                 <section class="article-content clearfix">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <h3>Реквизиты:</h3>
                                         <p>Муниципальная бюджетная организация дополнительного образования
                                             "Детско-юношеская спортивная школа "Арча Арена"</p>
@@ -89,7 +98,8 @@
                                             </span>
                                         </p>
                                     </div>
-                                    <div class="col-md-6">
+
+                                    <div class="col-md-5">
                                         <a class="btn btn-default btn-block"
                                            href="https://yandex.ru/maps/?um=constructor%3A9789f8664307b5cdc67179c4b7df5f0ebf84dbe2a7451dc75543be5319643407&source=constructorLink"
                                            target="_blank" rel="noopener">Открыть на Яндекс.Карте <i class="fa fa-map-o"
@@ -100,11 +110,48 @@
                                                     src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9789f8664307b5cdc67179c4b7df5f0ebf84dbe2a7451dc75543be5319643407&amp;width=auto&amp;height=450&amp;lang=ru_RU&amp;scroll=true"></script>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                <h3>Обратная связь</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <form action="{{ route('feedback.store') }}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="name">Ваше имя:*</label>
+                                                        <input type="text" required placeholder="Имя"
+                                                               class="form-control" id="name" name="name" maxlength="255"
+                                                               style="width: 100%;">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="phone">Телефон:*</label>
+                                                        <input type="text" required placeholder="Телефон"
+                                                               class="form-control" id="phone" name="phone" maxlength="255"
+                                                               style="width: 100%;">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email">E-mail:*</label>
+                                                        <input type="text" required placeholder="Электронная почта"
+                                                               class="form-control" id="email" name="email" maxlength="255"
+                                                               style="width: 100%;">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="comment">Комментарий:*</label>
+                                                        <textarea id="comment" required name="comment"
+                                                                  placeholder="Комментарий"
+                                                                  style="width: 100%; height: 100px"></textarea>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <input type="submit" value="Отправить" class="btn btn-primary">
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="clearfix">&nbsp;</div>
-                                    <p>
-                                        <img style="display: block; margin-top: 20px; margin-left: auto; margin-right: auto;"
-                                             src="{{ asset('public/images/arena-main-photo.jpg') }}"
-                                             alt="arena main photo" width="1499"></p></section>
+                                </section>
 
                                 <!-- footer -->
                                 <!-- //footer -->

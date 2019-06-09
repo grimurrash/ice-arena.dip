@@ -29,6 +29,8 @@ Route::get('posts/categories/{link}','Controller@categories');
 Route::get('reviews', 'Controller@comments')->name('reviews');
 Route::post('/posts/{post}/comments', 'CommentController@store')->name('comment.store');
 Route::post('reviews','ReviewController@store')->name('review.store');
+Route::post('feedback','FeedbackController@store')->name('feedback.store');
+
 
 Route::get('post/default',function (){
     return view('posts.default');
@@ -99,6 +101,9 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/categories', 'CategoryController@store')->name('categories.store');
     Route::get('admin/categories/{category}/delete', 'CategoryController@delete')->name('categories.delete');
 
+//    Feedback
+    Route::get('admin/feedback','FeedbackController@index')->name('feedback.index');
+    Route::get('admin/feedback/{feedback}/read','FeedbackController@edit')->name('feedback.edit');
 });
 
 
