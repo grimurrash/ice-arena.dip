@@ -76,24 +76,35 @@
                                 <section class="article-content clearfix">
                                     <div class="col-md-6">
                                         <h3>Реквизиты:</h3>
-                                        <p>Муниципальная бюджетная организация дополнительного образования "Детско-юношеская спортивная школа "Арча Арена"</p>
+                                        <p>Муниципальная бюджетная организация дополнительного образования
+                                            "Детско-юношеская спортивная школа "Арча Арена"</p>
                                         <p>ИНН 3525286517 &nbsp;КПП 352501001</p>
-                                        <p>Фактический и юридический адрес: 422000, РТ, г. Арск, ул. Сибирский тракт, д.14 А</p>
-                                    </div>
-                                    <div class="col-md-6">
+                                        <p>Фактический и юридический адрес: 422000, РТ, г. Арск, ул. Сибирский тракт,
+                                            д.14 А</p>
                                         <h3>Контакты:</h3>
                                         <p class="Textbody">Телефон: +7(843)-663-57-04</p>
                                         <p>E-mail:
                                             <span id="cloak1fff2e4003f1428eead824e8e846d2a4"><a
-                                                        href="mailto:liedovyi@mail.ru">	ArskArena@yandex.ru</a>
+                                                        href="mailto:liedovyi@mail.ru"> ArskArena@yandex.ru</a>
                                             </span>
                                         </p>
                                     </div>
+                                    <div class="col-md-6">
+                                        <a class="btn btn-default btn-block"
+                                           href="https://yandex.ru/maps/?um=constructor%3A9789f8664307b5cdc67179c4b7df5f0ebf84dbe2a7451dc75543be5319643407&source=constructorLink"
+                                           target="_blank" rel="noopener">Открыть на Яндекс.Карте <i class="fa fa-map-o"
+                                                                                                     aria-hidden="true"></i></a>
+                                        <div id="YMapsID_com_content_article_26_0_1_map" class="zhym-map-default"
+                                             style="margin:0;padding:0;width:100%;height:500px;">
+                                            <script type="text/javascript" charset="utf-8" async
+                                                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9789f8664307b5cdc67179c4b7df5f0ebf84dbe2a7451dc75543be5319643407&amp;width=auto&amp;height=450&amp;lang=ru_RU&amp;scroll=true"></script>
+                                        </div>
+                                    </div>
                                     <div class="clearfix">&nbsp;</div>
-                                    <p
+                                    <p>
                                         <img style="display: block; margin-top: 20px; margin-left: auto; margin-right: auto;"
-                                             src="{{ asset('public/images/arena-main-photo.jpg') }}" alt="arena main photo" width="1499"></p>
-                                </section>
+                                             src="{{ asset('public/images/arena-main-photo.jpg') }}"
+                                             alt="arena main photo" width="1499"></p></section>
 
                                 <!-- footer -->
                                 <!-- //footer -->

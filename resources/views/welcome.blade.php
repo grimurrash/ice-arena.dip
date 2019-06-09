@@ -291,7 +291,7 @@
                                                                         class="author">{{$comment->author}}</span></li>
                                                         </ul>
                                                         <div class="comment rounded ">
-                                                            <div>{{$comment->anons() }}
+                                                            <div style="word-wrap: break-word;">{{$comment->anons() }}
                                                             </div>
                                                         </div>
                                                     </div>

@@ -19,7 +19,9 @@ Route::get('/', 'Controller@index');
 Route::get('kontakty',function (){
     return view('kontakty');
 })->name('kontakty');
-
+Route::get('info',function (){
+    return view('info');
+})->name('info');
 
 Route::get('posts', 'Controller@posts_default');
 Route::get('posts/{link}', 'Controller@posts_index');

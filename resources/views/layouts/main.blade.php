@@ -168,6 +168,11 @@
                                     <span class="item-text">Реклама</span>
                                 </a>
                             </li>
+                            <li class="item-112 li-"><a href="{{ route('info') }}">
+                                    <span aria-hidden="true"></span>
+                                    <span class="item-text">О нас</span>
+                                </a>
+                            </li>
                             <li class="item-112 li-"><a href="{{ route('kontakty') }}">
                                     <span aria-hidden="true"></span>
                                     <span class="item-text">Контакты</span>
