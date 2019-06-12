@@ -127,7 +127,7 @@
                                                     <div class="form-group">
                                                         <label for="phone">Телефон:*</label>
                                                         <input type="text" required placeholder="Телефон"
-                                                               class="form-control" id="phone" pattern="7[0-9]{3}[0-9]{3}[0-9]{4}" name="phone" maxlength="255"
+                                                               class="form-control" id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="phone" maxlength="255"
                                                                style="width: 100%;">
                                                     </div>
                                                     <div class="form-group">
